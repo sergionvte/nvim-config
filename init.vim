@@ -19,7 +19,7 @@ call plug#begin()
 call plug#end()
 
 " Editor settings
-source neovim_settings.vim
+source ~/.config/nvim/neovim_settings.vim
 
 " Plugins settings
-source plugins_settings.vim
+source ~/.config/nvim/plugins_settings.vim
