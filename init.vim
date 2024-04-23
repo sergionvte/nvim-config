@@ -18,7 +18,7 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
-" Editor settings
+" Neovim settings
 source ~/.config/nvim/neovim_settings.vim
 
 " Plugins settings
