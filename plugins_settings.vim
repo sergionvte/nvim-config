@@ -13,6 +13,9 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " Rainbow
 let g:rainbow_active=1
 
+" Auto-save
+autocmd VimEnter * ASToggle
+
 " Emmet
 let g:user_emmet_leader_key=','
 let g:user_emmet_settings = {

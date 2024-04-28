@@ -14,6 +14,7 @@ call plug#begin()
   Plug 'alvan/vim-closetag'
   Plug 'tpope/vim-surround'
   Plug 'AndrewRadev/tagalong.vim'
+  Plug 'Pocco81/auto-save.nvim'
   Plug 'itchyny/lightline.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 call plug#end()
