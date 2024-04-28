@@ -8,7 +8,9 @@ set clipboard=unnamedplus
 set number relativenumber
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
-autocmd VimEnter * ASToggle
+if has ('ASToggle')
+  autocmd VimEnter * ASToggle
+endif
 nmap <silent>// :nohlsearch<CR>
 
 " Mappings
