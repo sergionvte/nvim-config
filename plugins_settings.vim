@@ -16,6 +16,11 @@ let g:rainbow_active=1
 " Auto-save
 autocmd VimEnter * ASToggle
 
+" Fzf
+nnoremap <C-m> :Buffer<CR>
+nnoremap <A-a> :Ag<CR>
+nnoremap <A-z> :Files<CR>
+
 " Emmet
 let g:user_emmet_leader_key=','
 let g:user_emmet_settings = {

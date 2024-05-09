@@ -11,6 +11,7 @@ autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 nmap <silent>// :nohlsearch<CR>
 
 " Mappings
+noremap <space> :
 nmap ñ $
 nmap ' $
 nmap Ñ 0

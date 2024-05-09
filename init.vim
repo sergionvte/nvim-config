@@ -4,7 +4,8 @@ call plug#begin()
   Plug 'sainnhe/gruvbox-material'
   Plug 'ryanoasis/vim-devicons'
   Plug 'luochen1990/rainbow'
-  Plug 'ap/vim-buftabline'
+  Plug 'itchyny/lightline.vim'
+  "Plug 'ap/vim-buftabline'
   Plug 'ervandew/supertab'
   Plug 'mhinz/vim-signify'
   Plug 'Yggdroot/indentLine'
@@ -15,8 +16,9 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'AndrewRadev/tagalong.vim'
   Plug 'Pocco81/auto-save.nvim'
-  Plug 'itchyny/lightline.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Neovim settings
