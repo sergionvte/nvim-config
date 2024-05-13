@@ -12,6 +12,8 @@ nmap <silent>// :nohlsearch<CR>
 
 " Mappings
 noremap <space> :
+nnoremap w e
+nnoremap e w
 nmap ñ $
 nmap ' $
 nmap Ñ 0
