@@ -1,11 +1,12 @@
 call plug#begin()
   Plug 'preservim/nerdtree'
   Plug 'preservim/nerdcommenter'
+  Plug 'RRethy/vim-illuminate'
+  Plug 'sainnhe/everforest'
   Plug 'sainnhe/gruvbox-material'
   Plug 'ryanoasis/vim-devicons'
   Plug 'luochen1990/rainbow'
   Plug 'itchyny/lightline.vim'
-  "Plug 'ap/vim-buftabline'
   Plug 'ervandew/supertab'
   Plug 'mhinz/vim-signify'
   Plug 'Yggdroot/indentLine'
@@ -16,9 +17,15 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'AndrewRadev/tagalong.vim'
   Plug 'Pocco81/auto-save.nvim'
-  Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'coreyja/fzf.devicon.vim'
+  Plug 'junegunn/fzf', {
+        \'do': { -> fzf#install() }
+        \}
+  Plug 'neoclide/coc.nvim', {
+        \'branch': 'master', 
+        \'do': 'yarn install --frozen-lockfile'
+        \}
 call plug#end()
 
 " Neovim settings
@@ -26,3 +33,6 @@ source ~/.config/nvim/neovim_settings.vim
 
 " Plugins settings
 source ~/.config/nvim/plugins_settings.vim
+
+" Theme settings
+source ~/.config/nvim/theme_settings.vim

@@ -5,10 +5,10 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
 
 " Conquer of Completion (coc)
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-htmldjango', 'coc-json', 'coc-prettier', 'coc-pyright', 'coc-clangd']
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-pyright', 'coc-htmldjango', 'coc-json', 'coc-prettier', 'coc-clangd']
 
 " Supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType="<c-n>"
 
 " Rainbow
 let g:rainbow_active=1
@@ -20,6 +20,8 @@ autocmd VimEnter * ASToggle
 nnoremap <C-m> :Buffer<CR>
 nnoremap <A-a> :Ag<CR>
 nnoremap <A-z> :Files<CR>
+nnoremap <S-h> :Ag<CR>
+nnoremap <S-l> :Files<CR>
 
 " Emmet
 let g:user_emmet_leader_key=','
