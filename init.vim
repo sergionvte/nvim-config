@@ -2,6 +2,8 @@ call plug#begin()
   Plug 'preservim/nerdtree'
   Plug 'preservim/nerdcommenter'
   Plug 'RRethy/vim-illuminate'
+  Plug 'sainnhe/edge'
+  Plug 'sainnhe/sonokai'
   Plug 'sainnhe/everforest'
   Plug 'sainnhe/gruvbox-material'
   Plug 'ryanoasis/vim-devicons'
@@ -35,4 +37,4 @@ source ~/.config/nvim/neovim_settings.vim
 source ~/.config/nvim/plugins_settings.vim
 
 " Theme settings
-source ~/.config/nvim/theme_settings.vim
+source ~/.config/nvim/themes/sonokai_theme.vim
