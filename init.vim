@@ -37,4 +37,4 @@ source ~/.config/nvim/neovim_settings.vim
 source ~/.config/nvim/plugins_settings.vim
 
 " Theme settings
-source ~/.config/nvim/themes/sonokai_theme.vim
+source ~/.config/nvim/themes/sonokai.vim
