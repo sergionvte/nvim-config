@@ -25,16 +25,16 @@ call plug#begin()
         \'do': { -> fzf#install() }
         \}
   Plug 'neoclide/coc.nvim', {
-        \'branch': 'master', 
+        \'branch': 'master',
         \'do': 'yarn install --frozen-lockfile'
         \}
 call plug#end()
 
 " Neovim settings
-source ~/.config/nvim/neovim_settings.vim
+source ~/.config/nvim/editor.vim
 
 " Plugins settings
-source ~/.config/nvim/plugins_settings.vim
+source ~/.config/nvim/plugins.vim
 
 " Theme settings
 source ~/.config/nvim/themes/sonokai.vim
