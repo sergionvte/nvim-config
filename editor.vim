@@ -1,3 +1,19 @@
+" Define leader key
+let mapleader = "\\"
+
+" Function to reload configuration
+if !exists('*ReloadConfig')
+  function! ReloadConfig()
+    source ~/.config/nvim/init.vim
+    source ~/.config/nvim/editor.vim
+    source ~/.config/nvim/plugins.vim
+    " Agrega cualquier otro archivo de configuración que necesites recargar
+  endfunction
+endif
+
+" Asignar <leader><leader> para recargar la configuración
+nnoremap <leader><leader> :call ReloadConfig()<CR>
+
 " Editor settings
 set expandtab
 set mouse=a
@@ -6,6 +22,11 @@ set shiftwidth=2
 set noshowmode
 set clipboard=unnamedplus
 set number relativenumber
+set ignorecase smartcase
+set hidden
+set cursorline
+set updatetime=300
+
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 autocmd BufWritePre * :%s/\s\+$//e

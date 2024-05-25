@@ -1,11 +1,23 @@
 " NerdTree
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
+autocmd VimEnter * if !argc() | execute 'NERDTree' | wincmd p | q | endif " Abre NERDTree al iniciar nvim
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
 
 " Conquer of Completion (coc)
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-pyright', 'coc-htmldjango', 'coc-json', 'coc-prettier', 'coc-clangd']
+nnoremap <leader>p :CocCommand prettier.forceFormatDocument<CR>
+let g:coc_global_extensions = [
+\ 'coc-tslint-plugin',
+\ 'coc-tsserver',
+\ 'coc-css',
+\ 'coc-html',
+\ 'coc-pyright',
+\ 'coc-htmldjango',
+\ 'coc-json',
+\ 'coc-prettier',
+\ 'coc-clangd'
+\ ]
 
 " Supertab
 let g:SuperTabDefaultCompletionType="<c-n>"
