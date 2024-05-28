@@ -47,12 +47,9 @@ end)
 -- Cargar configuraciones del editor
 require('settings')
 
--- Cargar configuraciones de plugins
-require('plugins')
-
 -- Cargar mapeos de teclado
 require('mappings')
 
 -- Cargar tema
-local current_theme = 'edge'
+local current_theme = 'sonokai'
 require('themes.' .. current_theme)

@@ -16,6 +16,10 @@ vim.o.smartcase = true
 vim.o.hidden = true
 vim.o.cursorline = true
 vim.o.updatetime = 300
+vim.o.ignorecase = true  -- Ignorar mayúsculas y minúsculas en búsquedas
+vim.o.smartcase = true   -- No ignorar si la búsqueda contiene mayúsculas
+vim.o.incsearch = true   -- Búsqueda incremental
+vim.o.hlsearch = true    -- Resaltar coincidencias
 
 vim.cmd [[
   autocmd FileType python setlocal tabstop=4 shiftwidth=4
@@ -23,31 +27,3 @@ vim.cmd [[
   autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
   autocmd BufWritePre * :%s/\s\+$//e
 ]]
-
--- Mappings
-vim.api.nvim_set_keymap('n', '<Space>', ':', { noremap = true })
-vim.api.nvim_set_keymap('n', 'w', 'e', { noremap = true })
-vim.api.nvim_set_keymap('n', 'e', 'w', { noremap = true })
-vim.api.nvim_set_keymap('n', '<silent>//', ':nohlsearch<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'ñ', '$', { noremap = true })
-vim.api.nvim_set_keymap('n', 'Ñ', '0', { noremap = true })
-vim.api.nvim_set_keymap('n', 'J', 'G', { noremap = true })
-vim.api.nvim_set_keymap('n', 'K', 'gg', { noremap = true })
-vim.api.nvim_set_keymap('n', ',,', 'ciw', { noremap = true })
-vim.api.nvim_set_keymap('n', '..', 'diw', { noremap = true })
-vim.api.nvim_set_keymap('n', '--', 'cs', { noremap = true })
-vim.api.nvim_set_keymap('v', 'w', 'e', { noremap = true })
-vim.api.nvim_set_keymap('v', 'e', 'w', { noremap = true })
-vim.api.nvim_set_keymap('v', 'ñ', '$', { noremap = true })
-vim.api.nvim_set_keymap('v', '\'', '$', { noremap = true })
-vim.api.nvim_set_keymap('v', 'J', 'G', { noremap = true })
-vim.api.nvim_set_keymap('v', 'K', 'gg', { noremap = true })
-
--- Function to reload configuration
-if not vim.fn.exists('*ReloadConfig') then
-  function ReloadConfig()
-    vim.cmd('source ~/.config/nvim/init.lua')
-  end
-end
-
-vim.api.nvim_set_keymap('n', '<leader><leader>', ':lua ReloadConfig()<CR>', { noremap = true, silent = true })
