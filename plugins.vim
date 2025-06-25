@@ -30,10 +30,8 @@ autocmd VimEnter * ASToggle
 
 " Fzf
 nnoremap <C-m> :Buffer<CR>
-nnoremap <A-a> :Ag<CR>
-nnoremap <A-z> :Files<CR>
-nnoremap <S-h> :Ag<CR>
-nnoremap <S-l> :Files<CR>
+nnoremap <C-h> :Ag<CR>
+nnoremap <C-l> :Files<CR>
 
 " Emmet
 let g:user_emmet_leader_key=','

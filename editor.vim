@@ -43,6 +43,8 @@ nmap ñ $
 nmap Ñ 0
 nmap J G
 nmap K gg
+nmap L $
+nmap H 0
 nmap ,, ciw
 nmap .. #
 nmap -- cs
@@ -50,6 +52,8 @@ vnoremap w e
 vnoremap e w
 vmap ñ $
 vmap ' $
+vmap L $
+vmap H 0
 vmap J G
 vmap K gg
 inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"

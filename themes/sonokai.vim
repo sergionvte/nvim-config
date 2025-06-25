@@ -5,6 +5,7 @@ let g:sonokai_enable_bold=1
 let g:sonokai_transparent_background=2
 let g:sonokai_current_word='underline'
 let g:lightline={'colorscheme': 'sonokai'}
+let g:cursor='yellow'
 if has('termguicolors')
   set termguicolors
 endif
