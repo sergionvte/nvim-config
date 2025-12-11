@@ -14,6 +14,7 @@ Plug 'onsails/lspkind.nvim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'bagrat/vim-buffet'
 
 " Editing Enhancements
 Plug 'mhinz/vim-signify'
@@ -26,7 +27,7 @@ Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'Pocco81/auto-save.nvim'
 Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 
 " Syntax Highlighting & Code Navigation
 Plug 'RRethy/vim-illuminate'

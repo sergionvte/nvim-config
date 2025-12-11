@@ -48,6 +48,7 @@ nmap H 0
 nmap ,, ciw
 nmap .. #
 nmap -- cs
+nnoremap U <C-r>
 vnoremap w e
 vnoremap e w
 vmap ñ $
@@ -56,6 +57,18 @@ vmap L $
 vmap H 0
 vmap J G
 vmap K gg
-inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <tab> pumvisible() ? coc#select_confirm() : "\<C-g>u\<tab>"
 
+" Usar Tab para aceptar sugerencia, Shift+Tab para navegar hacia atrás
+inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : "\<TAB>"
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Shift+Enter también acepta la sugerencia
+inoremap <silent><expr> <S-CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
+
+" Enter normal sin confirmar sugerencia
+inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Navegación entre buffers
+nnoremap <silent><Tab> :BufferLineCycleNext<CR>
+nnoremap <silent><S-Tab> :BufferLineCyclePrev<CR>
+nnoremap <silent><leader>x :bdelete<CR>

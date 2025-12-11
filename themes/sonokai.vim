@@ -11,3 +11,8 @@ if has('termguicolors')
 endif
 set background=dark
 colorscheme sonokai
+highlight! link BuffetCurrentBuffer TabLineSel
+highlight! link BuffetActiveBuffer TabLineSel
+highlight! link BuffetBuffer TabLine
+highlight! link BuffetTab TabLineFill
+highlight! link BuffetTrunc TabLineFill
