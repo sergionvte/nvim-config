@@ -72,3 +72,7 @@ inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>\<c-r>=coc#o
 nnoremap <silent><Tab> :BufferLineCycleNext<CR>
 nnoremap <silent><S-Tab> :BufferLineCyclePrev<CR>
 nnoremap <silent><leader>x :bdelete<CR>
+
+" Ejecutar Python con Ctrl + Enter
+autocmd FileType python nnoremap <buffer> <C-CR> :w<CR>:split \| terminal python3 %<CR>i
+
