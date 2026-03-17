@@ -1,6 +1,9 @@
 " Vim-hexokinase
 let g:Hexokinase_highlighters = [ 'virtual' ]
 
+" Indent Line
+let g:indentLine_bufTypeExclude = ['nofile']
+
 " Conquer of Completion (coc)
 nnoremap <leader>p :CocCommand prettier.forceFormatDocument<CR>
 let g:coc_global_extensions = [
