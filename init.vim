@@ -1,6 +1,7 @@
 call plug#begin()
 " File Navigation
-Plug 'preservim/nerdtree'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'coreyja/fzf.devicon.vim'
@@ -11,10 +12,10 @@ Plug 'sainnhe/sonokai'
 Plug 'sainnhe/everforest'
 Plug 'sainnhe/gruvbox-material'
 Plug 'onsails/lspkind.nvim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'itchyny/lightline.vim'
+Plug 'navarasu/onedark.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-Plug 'bagrat/vim-buffet'
+Plug 'akinsho/bufferline.nvim'
 
 " Editing Enhancements
 Plug 'mhinz/vim-signify'
@@ -27,7 +28,7 @@ Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'Pocco81/auto-save.nvim'
 Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
-"Plug 'ervandew/supertab'
+Plug 'tpope/vim-fugitive'
 
 " Syntax Highlighting & Code Navigation
 Plug 'RRethy/vim-illuminate'
@@ -37,11 +38,15 @@ Plug 'luochen1990/rainbow'
 Plug 'preservim/nerdcommenter'
 call plug#end()
 
-" Neovim settings
+" Editor settings (Vimscript — keymaps, options)
 source ~/.config/nvim/editor.vim
 
-" Plugins settings
+" Plugins settings (Vimscript — non-lua plugins)
 source ~/.config/nvim/plugins.vim
 
-" Theme settings
-source ~/.config/nvim/themes/sonokai.vim
+" Lua plugins (nvim-tree, lualine, onedark, bufferline, auto-save)
+" Lua plugins (nvim-tree, lualine, onedark, bufferline, auto-save)
+lua pcall(require, 'plugins.nvim-tree')
+lua pcall(require, 'plugins.lualine')
+lua pcall(require, 'plugins.onedark')
+lua pcall(require, 'plugins.autosave')

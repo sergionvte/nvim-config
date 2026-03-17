@@ -17,6 +17,8 @@ endif
 nnoremap <leader><leader> :call ReloadConfig()<CR>
 
 " Editor settings
+lua vim.opt.fillchars:append({ eob = " " })
+
 set expandtab
 set mouse=a
 set ts=2
@@ -76,3 +78,6 @@ nnoremap <silent><leader>x :bdelete<CR>
 " Ejecutar Python con Ctrl + Enter
 autocmd FileType python nnoremap <buffer> <C-CR> :w<CR>:split \| terminal python3 %<CR>i
 
+" Borrar palabra hacia atras
+imap <A-BS> <C-w>
+imap <Esc><BS> <C-w>
