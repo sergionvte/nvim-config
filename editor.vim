@@ -83,3 +83,10 @@ autocmd FileType python nnoremap <buffer> <C-CR> :w<CR>:split \| terminal python
 " Borrar palabra hacia atras
 imap <A-BS> <C-w>
 imap <Esc><BS> <C-w>
+
+" CoC
+nmap <leader>h :CocCommand document.toggleInlayHint<CR>
+nmap <C-A-Down> <Plug>(coc-cursors-position)j
+nmap <C-A-Up> <Plug>(coc-cursors-position)k
+xmap <C-A-Down> <Plug>(coc-cursors-range)j
+xmap <C-A-Up> <Plug>(coc-cursors-range)k
