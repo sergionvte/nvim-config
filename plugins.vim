@@ -18,6 +18,9 @@ let g:coc_global_extensions = [
 \ 'coc-clangd'
 \ ]
 
+" Signify
+let g:signify_skip_filetype = { 'NvimTree': 1 }
+
 " Rainbow
 let g:rainbow_active=1
 

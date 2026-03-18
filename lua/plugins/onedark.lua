@@ -6,12 +6,13 @@ require('onedark').setup({
     darker = true,
     background = true,
   },
-  transparent = true,  -- Fondo del editor transparente
+  transparent = true,
 })
 
 require('onedark').load()
 
--- Fondo solo para nvim-tree (usa el color darker del tema)
 local bg = require('onedark.palette').darker.bg0
 vim.api.nvim_set_hl(0, 'NvimTreeNormal', { bg = bg })
 vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { bg = bg })
+vim.api.nvim_set_hl(0, 'NvimTreeCursorLine', { bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'WinSeparator', { fg = bg, bg = bg })

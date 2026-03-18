@@ -5,7 +5,6 @@ vim.g.loaded_netrwPlugin = 1
 require('nvim-tree').setup({
   hijack_cursor = true,
   sync_root_with_cwd = true,
-
   on_attach = function(bufnr)
     local api = require('nvim-tree.api')
     api.config.mappings.default_on_attach(bufnr)
@@ -20,15 +19,15 @@ require('nvim-tree').setup({
       end
     end, opts)
   end,
-
   view = {
     width = 30,
-    side = 'left',
+    side = 'right',
+    signcolumn = 'no'
   },
-
   renderer = {
     highlight_git = true,
     highlight_opened_files = 'name',
+    indent_width = 1,
     root_folder_label = false,
     indent_markers = {
       enable = true,
@@ -48,15 +47,12 @@ require('nvim-tree').setup({
       },
     },
   },
-
   hijack_directories = {
     enable = true,
   },
-
   filters = {
     dotfiles = false,
   },
-
   git = {
     enable = true,
     ignore = false,
@@ -66,3 +62,16 @@ require('nvim-tree').setup({
 -- Keymaps
 vim.keymap.set('n', '<leader>n', ':NvimTreeFocus<CR>', { silent = true })
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { silent = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "NvimTree",
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.signcolumn = "no"
+    vim.opt_local.foldcolumn = "0"
+    vim.opt_local.statuscolumn = ""
+    vim.opt_local.scrolloff = 0
+    vim.cmd('SignifyDisableAll')
+  end,
+})

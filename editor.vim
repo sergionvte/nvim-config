@@ -18,7 +18,7 @@ nnoremap <leader><leader> :call ReloadConfig()<CR>
 
 " Editor settings
 lua vim.opt.fillchars:append({ eob = " " })
-
+set numberwidth=1
 set expandtab
 set mouse=a
 set ts=2
