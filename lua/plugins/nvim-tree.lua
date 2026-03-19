@@ -62,6 +62,9 @@ require('nvim-tree').setup({
 -- Keymaps
 vim.keymap.set('n', '<leader>n', ':NvimTreeFocus<CR>', { silent = true })
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { silent = true })
+-- Keymaps
+vim.keymap.set('n', '<leader>n', ':NvimTreeFocus<CR>', { silent = true })
+vim.keymap.set('n', '<C-b>', ':NvimTreeToggle<CR>', { silent = true })
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "NvimTree",

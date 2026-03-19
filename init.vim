@@ -29,6 +29,7 @@ Plug 'AndrewRadev/tagalong.vim'
 Plug 'Pocco81/auto-save.nvim'
 Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
 Plug 'tpope/vim-fugitive'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Syntax Highlighting & Code Navigation
 Plug 'RRethy/vim-illuminate'

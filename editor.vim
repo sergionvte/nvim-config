@@ -90,3 +90,26 @@ nmap <C-A-Down> <Plug>(coc-cursors-position)j
 nmap <C-A-Up> <Plug>(coc-cursors-position)k
 xmap <C-A-Down> <Plug>(coc-cursors-range)j
 xmap <C-A-Up> <Plug>(coc-cursors-range)k
+
+" Multicursor - seleccionar siguiente ocurrencia (cmd+d)
+nmap <C-S-D> <Plug>(coc-cursors-word)
+xmap <C-S-D> <Plug>(coc-cursors-range)
+
+" Multicursor - agregar cursor arriba/abajo
+nmap <C-A-Down> <Plug>(coc-cursors-position)j
+nmap <C-A-Up> <Plug>(coc-cursors-position)k
+xmap <C-A-Down> <Plug>(coc-cursors-range)j
+xmap <C-A-Up> <Plug>(coc-cursors-range)k
+
+" Deshabilitar todos los keymaps por defecto
+let g:VM_default_mappings = 0
+
+" Multicursor - seleccionar siguiente ocurrencia (cmd+d)
+let g:VM_maps = {}
+let g:VM_maps['Find Under'] = '<C-A-d>'
+let g:VM_maps['Find Subword Under'] = '<C-A-d>'
+
+" Multicursor - agregar cursor arriba/abajo
+let g:VM_maps['Add Cursor Down'] = '<C-A-Down>'
+let g:VM_maps['Add Cursor Up'] = '<C-A-Up>'
+let g:VM_maps['Skip Region'] = '<C-x>'
