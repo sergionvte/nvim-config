@@ -29,7 +29,6 @@ set number relativenumber
 set ignorecase smartcase
 set hidden
 set cursorline
-set updatetime=300
 
 autocmd FileType python setlocal tabstop=4 shiftwidth=4
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
