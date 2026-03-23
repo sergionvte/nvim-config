@@ -81,6 +81,9 @@ nnoremap <silent><C-x> :bdelete<CR>
 " Ejecutar Python con Ctrl + Enter
 autocmd FileType python nnoremap <buffer> <C-CR> :w<CR>:split \| terminal python3 %<CR>i
 
+" Ejecutar JS/TS con Ctrl + Enter
+autocmd FileType javascript,typescript nnoremap <buffer> <C-CR> :w<CR>:split \| terminal node %<CR>i
+
 " Borrar palabra hacia atras
 imap <A-BS> <C-w>
 imap <Esc><BS> <C-w>
