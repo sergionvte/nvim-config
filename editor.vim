@@ -21,8 +21,10 @@ lua vim.opt.fillchars:append({ eob = " " })
 set numberwidth=1
 set expandtab
 set mouse=a
-set ts=2
-set shiftwidth=2
+set ts=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
 set noshowmode
 set clipboard=unnamedplus
 set number relativenumber
