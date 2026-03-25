@@ -52,3 +52,11 @@ let g:user_emmet_settings = {
 \    },
 \  },
 \}
+
+" NERD Commenter
+" Deshabilitar mappings por defecto para evitar conflictos
+let g:NERDCreateDefaultMappings = 0
+
+" Ctrl+C para toggle comment en normal y visual
+nmap <C-c> <Plug>NERDCommenterToggle
+vmap <C-c> <Plug>NERDCommenterToggle<CR>gv
