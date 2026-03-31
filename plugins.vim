@@ -25,7 +25,8 @@ let g:signify_skip_filetype = { 'NvimTree': 1 }
 let g:rainbow_active=1
 
 " Fzf
-nnoremap <C-m> :Buffer<CR>
+" nnoremap <C-m> :Buffer<CR>
+nnoremap <CR> :Buffers<CR>
 nnoremap <C-j> :Ag<CR>
 nnoremap <C-k> :Files<CR>
 inoremap <A-delete> <NOP>
