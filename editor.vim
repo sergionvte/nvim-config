@@ -16,6 +16,11 @@ endif
 " Asignar <leader><leader> para recargar la configuración
 nnoremap <leader><leader> :call ReloadConfig()<CR>
 
+" Format on save toggle
+let g:format_on_save = 1
+command! ToggleFormat let g:format_on_save = !g:format_on_save | echo "Format on save: " . (g:format_on_save ? "Enabled" : "Disabled")
+nnoremap <leader>f :ToggleFormat<CR>
+
 " Editor settings
 lua vim.opt.fillchars:append({ eob = " " })
 set numberwidth=1
@@ -33,6 +38,7 @@ set hidden
 set cursorline
 set timeoutlen=300
 set ttimeoutlen=10
+set updatetime=100
 
 autocmd FileType python setlocal tabstop=4 shiftwidth=4
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber

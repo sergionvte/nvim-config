@@ -1,5 +1,9 @@
 {
   "inlayHint.enable": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "black",
+  "coc.preferences.formatOnSave": false,
+  "coc.preferences.formatOnSaveFiletypes": [],
   "languageserver": {
     "diagnostic.checkCurrentLine": true,
     "diagnostic.refreshOnInsertMode": true,
@@ -15,5 +19,5 @@
         }
       }
     }
-  },
+  }
 }

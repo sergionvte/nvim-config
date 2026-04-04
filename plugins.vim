@@ -20,6 +20,10 @@ let g:coc_global_extensions = [
 
 " Signify
 let g:signify_skip_filetype = { 'NvimTree': 1 }
+highlight SignColumn        guibg=NONE
+highlight SignifySignAdd    guifg=#00ff00 guibg=NONE
+highlight SignifySignChange guifg=#ffff00 guibg=NONE
+highlight SignifySignDelete guifg=#ff0000 guibg=NONE
 
 " Rainbow
 let g:rainbow_active=1
@@ -60,4 +64,4 @@ let g:NERDCreateDefaultMappings = 0
 
 " Ctrl+C para toggle comment en normal y visual
 nmap <C-c> <Plug>NERDCommenterToggle
-vmap <C-c> <Plug>NERDCommenterToggle<CR>gv
+vmap <C-c> <Plug>NERDCommenterTogglegv
