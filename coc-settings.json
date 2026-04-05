@@ -1,5 +1,5 @@
 {
-  "inlayHint.enable": true,
+  "inlayHint.enable": false,
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "black",
   "coc.preferences.formatOnSave": false,

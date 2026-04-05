@@ -3,6 +3,7 @@ let g:Hexokinase_highlighters = [ 'virtual' ]
 
 " Indent Line
 let g:indentLine_bufTypeExclude = ['nofile']
+let g:indentLine_fileTypeExclude = ['NvimTree']
 
 " Conquer of Completion (coc)
 nnoremap <leader>p :CocCommand prettier.forceFormatDocument<CR>

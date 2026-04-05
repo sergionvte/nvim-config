@@ -37,9 +37,9 @@ require('bufferline').setup({
     warning_selected = { bg = require('onedark.palette').darker.bg2 },
     error_selected = { bg = require('onedark.palette').darker.bg2 },
     modified_selected = { bg = require('onedark.palette').darker.bg2 },
-    separator = { fg = 'NONE', bg = 'NONE' },
-    separator_selected = { fg = 'NONE', bg = 'NONE' },
-    separator_visible = { fg = 'NONE', bg = 'NONE' },
-    offset_separator = { fg = 'NONE', bg = 'NONE' },
+    separator = { fg = require('onedark.palette').darker.bg2, bg = 'NONE' },
+    separator_selected = { fg = require('onedark.palette').darker.bg2, bg = 'NONE' },
+    separator_visible = { fg = require('onedark.palette').darker.bg2, bg = 'NONE' },
+    offset_separator = { fg = require('onedark.palette').darker.bg2, bg = 'NONE' },
   },
 })

@@ -10,12 +10,13 @@ require('onedark').setup({
 })
 require('onedark').load()
 
+local colors = require('onedark.palette').darker
 vim.api.nvim_set_hl(0, 'NvimTreeNormal', { bg = 'NONE', ctermbg = 'NONE' })
 vim.api.nvim_set_hl(0, 'NvimTreeNormalNC', { bg = 'NONE', ctermbg = 'NONE' })
 vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'NvimTreeCursorLine', { bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'NvimTreeWinSeparator', { fg = 'NONE', bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'WinSeparator', { fg = 'NONE', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'NvimTreeWinSeparator', { fg = colors.bg2, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'WinSeparator', { fg = colors.bg2, bg = 'NONE' })
 
 -- Signify and SignColumn transparency
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'NONE' })
