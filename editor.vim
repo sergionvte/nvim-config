@@ -85,12 +85,23 @@ nnoremap <silent><S-Tab> :BufferLineCyclePrev<CR>
 nnoremap <silent><leader>x :bdelete<CR>
 nnoremap <silent><C-x> :bdelete<CR>
 
+" Snippets
+imap <C-l> <Plug>(coc-snippets-expand)
+vmap <C-j> <Plug>(coc-snippets-select)
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-k>'
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" Ejecutar Python con Ctrl + Enter
-autocmd FileType python nnoremap <buffer> <C-CR> :w<CR>:split \| terminal python3 %<CR>i
 
-" Ejecutar JS/TS con Ctrl + Enter
-autocmd FileType javascript,typescript nnoremap <buffer> <C-CR> :w<CR>:split \| terminal node %<CR>i
+" Ejecutar Python con Ctrl + Enter (auto-close)
+autocmd FileType python nnoremap <buffer> <C-CR> :w<CR>:split \| terminal python3 %<CR>:setlocal bufhidden=wipe \| autocmd BufLeave <buffer> ++once bdelete!<CR>i
+" Ejecutar Python con Ctrl + Alt + Enter (persistente)
+autocmd FileType python nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal python3 %<CR>i
+
+" Ejecutar JS/TS con Ctrl + Enter (auto-close)
+autocmd FileType javascript,typescript nnoremap <buffer> <C-CR> :w<CR>:split \| terminal node %<CR>:setlocal bufhidden=wipe \| autocmd BufLeave <buffer> ++once bdelete!<CR>i
+" Ejecutar JS/TS con Ctrl + Alt + Enter (persistente)
+autocmd FileType javascript,typescript nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal node %<CR>i
 
 " Borrar palabra hacia atras
 imap <A-BS> <C-w>

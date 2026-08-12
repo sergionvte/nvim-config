@@ -5,6 +5,9 @@ let g:Hexokinase_highlighters = [ 'virtual' ]
 let g:indentLine_bufTypeExclude = ['nofile']
 let g:indentLine_fileTypeExclude = ['NvimTree']
 
+" Closetag
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.tsx'
+
 " Conquer of Completion (coc)
 nnoremap <leader>p :CocCommand prettier.forceFormatDocument<CR>
 let g:coc_global_extensions = [
@@ -16,7 +19,12 @@ let g:coc_global_extensions = [
 \ 'coc-htmldjango',
 \ 'coc-json',
 \ 'coc-prettier',
-\ 'coc-clangd'
+\ 'coc-clangd',
+\ 'coc-eslint',
+\ 'coc-tailwindcss',
+\ 'coc-snippets',
+\ 'coc-emmet',
+\ 'coc-svg'
 \ ]
 
 " Signify

@@ -1,0 +1,226 @@
+{
+  "nodes": [
+    {
+      "id": "opencode_opencode",
+      "label": "opencode.json",
+      "file_type": "code",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "opencode_opencode_schema",
+      "label": "$schema",
+      "file_type": "code",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L2",
+      "_origin": "ast"
+    },
+    {
+      "id": "opencode_opencode_plugin",
+      "label": "plugin",
+      "file_type": "code",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L3",
+      "_origin": "ast"
+    },
+    {
+      "id": "ref_opencode_plugins_graphify_js",
+      "label": ".opencode/plugins/graphify.js",
+      "file_type": "concept",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L3",
+      "_origin": "ast"
+    },
+    {
+      "id": "opencode_plugins_graphify",
+      "label": "graphify.js",
+      "file_type": "code",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "opencode_plugins_graphify_graphifyplugin",
+      "label": "GraphifyPlugin()",
+      "file_type": "code",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L12",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "opencode_plugins_graphify_rationale_4",
+      "label": "IMPORTANT: keep the reminder string free of backticks and $(...) constructs.",
+      "file_type": "rationale",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L4",
+      "_origin": "ast"
+    },
+    {
+      "id": "lua_config_autocmds",
+      "label": "autocmds.lua",
+      "file_type": "code",
+      "source_file": "lua/config/autocmds.lua",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lua_plugins_autosave",
+      "label": "autosave.lua",
+      "file_type": "code",
+      "source_file": "lua/plugins/autosave.lua",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lua_plugins_bufferline",
+      "label": "bufferline.lua",
+      "file_type": "code",
+      "source_file": "lua/plugins/bufferline.lua",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lua_plugins_flash",
+      "label": "flash.lua",
+      "file_type": "code",
+      "source_file": "lua/plugins/flash.lua",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lua_plugins_lualine",
+      "label": "lualine.lua",
+      "file_type": "code",
+      "source_file": "lua/plugins/lualine.lua",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lua_plugins_nvim_tree",
+      "label": "nvim-tree.lua",
+      "file_type": "code",
+      "source_file": "lua/plugins/nvim-tree.lua",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lua_plugins_onedark",
+      "label": "onedark.lua",
+      "file_type": "code",
+      "source_file": "lua/plugins/onedark.lua",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "lua_plugins_treesitter",
+      "label": "treesitter.lua",
+      "file_type": "code",
+      "source_file": "lua/plugins/treesitter.lua",
+      "source_location": "L1",
+      "_origin": "ast"
+    }
+  ],
+  "edges": [
+    {
+      "source": "opencode_opencode",
+      "target": "opencode_opencode_schema",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "opencode_opencode",
+      "target": "opencode_opencode_plugin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "opencode_opencode_plugin",
+      "target": "ref_opencode_plugins_graphify_js",
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/opencode.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "context": "import",
+      "_origin": "ast"
+    },
+    {
+      "source": "opencode_plugins_graphify",
+      "target": "ref_fs",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "opencode_plugins_graphify",
+      "target": "ref_path",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "opencode_plugins_graphify",
+      "target": "opencode_plugins_graphify_graphifyplugin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "opencode_plugins_graphify_rationale_4",
+      "target": "opencode_plugins_graphify",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lua_plugins_nvim_tree",
+      "target": "nvim_tree_api",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lua/plugins/nvim-tree.lua",
+      "source_location": "9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "lua_plugins_onedark",
+      "target": "onedark_palette",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lua/plugins/onedark.lua",
+      "source_location": "13",
+      "weight": 1.0,
+      "_origin": "ast"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

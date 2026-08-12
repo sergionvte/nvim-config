@@ -34,10 +34,16 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Syntax Highlighting & Code Navigation
 Plug 'RRethy/vim-illuminate'
 Plug 'luochen1990/rainbow'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'honza/vim-snippets'
+Plug 'folke/flash.nvim'
 
 " Comments
 Plug 'preservim/nerdcommenter'
 call plug#end()
+
+let g:python3_host_prog = '/usr/bin/python3'
 
 " Editor settings (Vimscript — keymaps, options)
 source ~/.config/nvim/editor.vim
@@ -52,4 +58,6 @@ lua pcall(require, 'plugins.lualine')
 lua pcall(require, 'plugins.onedark')
 lua pcall(require, 'plugins.autosave')
 lua pcall(require, 'plugins.bufferline')
+lua pcall(require, 'plugins.treesitter')
 lua pcall(require, 'config.autocmds')
+lua pcall(require, 'plugins.flash')

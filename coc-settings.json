@@ -2,8 +2,16 @@
   "inlayHint.enable": false,
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "black",
-  "coc.preferences.formatOnSave": false,
-  "coc.preferences.formatOnSaveFiletypes": [],
+  "coc.preferences.formatOnSave": true,
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "css", "json", "html"],
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact"],
+  "prettier.printWidth": 100,
+  "prettier.singleQuote": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
   "languageserver": {
     "diagnostic.checkCurrentLine": true,
     "diagnostic.refreshOnInsertMode": true,
@@ -19,5 +27,9 @@
         }
       }
     }
+  },
+  "snippets.ultisnips.pythonPrompt": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   }
 }
