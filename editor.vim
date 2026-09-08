@@ -23,13 +23,13 @@ nnoremap <leader>f :ToggleFormat<CR>
 
 " Editor settings
 lua vim.opt.fillchars:append({ eob = " " })
+set termguicolors
 set numberwidth=1
 set expandtab
 set mouse=a
 set ts=4
 set shiftwidth=4
 set softtabstop=4
-set expandtab
 set noshowmode
 set clipboard=unnamedplus
 set number relativenumber
@@ -39,11 +39,17 @@ set cursorline
 set timeoutlen=300
 set ttimeoutlen=10
 set updatetime=100
+set undofile
 
 autocmd FileType python setlocal tabstop=4 shiftwidth=4
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
-autocmd BufWritePre * :%s/\s\+$//e
+function! s:StripTrailingWhitespace()
+  let l:view = winsaveview()
+  keeppatterns %s/\s\+$//e
+  call winrestview(l:view)
+endfunction
+autocmd BufWritePre * call s:StripTrailingWhitespace()
 
 " Mappings
 noremap <space> :
@@ -103,16 +109,17 @@ autocmd FileType javascript,typescript nnoremap <buffer> <C-CR> :w<CR>:split \| 
 " Ejecutar JS/TS con Ctrl + Alt + Enter (persistente)
 autocmd FileType javascript,typescript nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal node %<CR>i
 
+" Ejecutar Java con Ctrl + Enter (auto-close)
+autocmd FileType java nnoremap <buffer> <C-CR> :w<CR>:split \| terminal java %<CR>:setlocal bufhidden=wipe \| autocmd BufLeave <buffer> ++once bdelete!<CR>i
+" Ejecutar Java con Ctrl + Alt + Enter (persistente)
+autocmd FileType java nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal java %<CR>i
+
 " Borrar palabra hacia atras
 imap <A-BS> <C-w>
 imap <Esc><BS> <C-w>
 
 " CoC
 nmap <leader>h :CocCommand document.toggleInlayHint<CR>
-nmap <C-A-Down> <Plug>(coc-cursors-position)j
-nmap <C-A-Up> <Plug>(coc-cursors-position)k
-xmap <C-A-Down> <Plug>(coc-cursors-range)j
-xmap <C-A-Up> <Plug>(coc-cursors-range)k
 
 " Multicursor - seleccionar siguiente ocurrencia (cmd+d)
 nmap <C-S-D> <Plug>(coc-cursors-word)

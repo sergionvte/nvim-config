@@ -1,13 +1,14 @@
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "javascript", "typescript", "tsx", "html", "css", "json", "lua", "python" },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  indent = {
-    enable = true
-  },
-  autotag = {
-    enable = true,
-  }
-}
+-- nvim-treesitter (main branch, 2024+ rewrite): the old `.configs.setup{}` API
+-- was removed. Parsers are installed explicitly and highlighting/indent are
+-- enabled per-filetype via autocmds instead of a single setup() call.
+local ensure_installed = { "javascript", "typescript", "tsx", "html", "css", "json", "lua", "python", "java" }
+
+require('nvim-treesitter').install(ensure_installed)
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact", "html", "css", "json", "lua", "python", "java" },
+  callback = function()
+    vim.treesitter.start()
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})

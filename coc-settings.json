@@ -2,8 +2,6 @@
   "inlayHint.enable": false,
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "black",
-  "coc.preferences.formatOnSave": true,
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "css", "json", "html"],
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact"],
   "prettier.printWidth": 100,
@@ -12,11 +10,11 @@
     "javascript": "javascriptreact",
     "typescript": "typescriptreact"
   },
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
   "languageserver": {
-    "diagnostic.checkCurrentLine": true,
-    "diagnostic.refreshOnInsertMode": true,
-    "diagnostic.virtualText": true,
-    "diagnostic.virtualTextCurrentLineOnly": false,
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
@@ -29,6 +27,14 @@
     }
   },
   "snippets.ultisnips.pythonPrompt": false,
+  "java.jdt.ls.java.home": "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-21",
+      "path": "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home",
+      "default": true
+    }
+  ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   }

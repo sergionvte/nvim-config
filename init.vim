@@ -11,7 +11,6 @@ Plug 'sainnhe/edge'
 Plug 'sainnhe/sonokai'
 Plug 'sainnhe/everforest'
 Plug 'sainnhe/gruvbox-material'
-Plug 'onsails/lspkind.nvim'
 Plug 'navarasu/onedark.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
@@ -19,8 +18,7 @@ Plug 'akinsho/bufferline.nvim'
 
 " Editing Enhancements
 Plug 'mhinz/vim-signify'
-Plug 'Yggdroot/indentLine'
-Plug 'mattn/emmet-vim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'andymass/vim-matchup'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
@@ -52,12 +50,12 @@ source ~/.config/nvim/editor.vim
 source ~/.config/nvim/plugins.vim
 
 " Lua plugins (nvim-tree, lualine, onedark, bufferline, auto-save)
-" Lua plugins (nvim-tree, lualine, onedark, bufferline, auto-save)
 lua pcall(require, 'plugins.nvim-tree')
 lua pcall(require, 'plugins.lualine')
 lua pcall(require, 'plugins.onedark')
 lua pcall(require, 'plugins.autosave')
 lua pcall(require, 'plugins.bufferline')
 lua pcall(require, 'plugins.treesitter')
+lua pcall(require, 'plugins.indent-blankline')
 lua pcall(require, 'config.autocmds')
 lua pcall(require, 'plugins.flash')
