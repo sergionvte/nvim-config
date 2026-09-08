@@ -7,7 +7,7 @@ nnoremap /. :let @/=expand('<cword>')<CR>n
 " Function to reload configuration
 if !exists('*ReloadConfig')
   function! ReloadConfig()
-    source ~/.config/nvim/init.vim
+    source ~/.config/nvim/init.lua
     source ~/.config/nvim/editor.vim
     source ~/.config/nvim/plugins.vim
   endfunction
