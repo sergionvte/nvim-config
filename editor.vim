@@ -114,6 +114,11 @@ autocmd FileType java nnoremap <buffer> <C-CR> :w<CR>:split \| terminal java %<C
 " Ejecutar Java con Ctrl + Alt + Enter (persistente)
 autocmd FileType java nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal java %<CR>i
 
+" Ejecutar Go con Ctrl + Enter (auto-close)
+autocmd FileType go nnoremap <buffer> <C-CR> :w<CR>:split \| terminal go run %<CR>:setlocal bufhidden=wipe \| autocmd BufLeave <buffer> ++once bdelete!<CR>i
+" Ejecutar Go con Ctrl + Alt + Enter (persistente)
+autocmd FileType go nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal go run %<CR>i
+
 " Borrar palabra hacia atras
 imap <A-BS> <C-w>
 imap <Esc><BS> <C-w>

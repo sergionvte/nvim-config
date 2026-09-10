@@ -34,7 +34,7 @@ return {
 
   -- Syntax Highlighting & Code Navigation
   { 'RRethy/vim-illuminate', lazy = false },
-  { 'luochen1990/rainbow', lazy = false },
+  { 'HiPhish/rainbow-delimiters.nvim', lazy = false },
   { 'nvim-treesitter/nvim-treesitter', lazy = false, branch = 'main', build = ':TSUpdate' },
   { 'styled-components/vim-styled-components', lazy = false, branch = 'main' },
   { 'honza/vim-snippets', lazy = false },
@@ -42,4 +42,7 @@ return {
 
   -- Comments
   { 'preservim/nerdcommenter', lazy = false },
+
+  -- Code screenshots (polacode-style)
+  { 'mistricky/codesnap.nvim', tag = 'v2.0.5', lazy = false },
 }

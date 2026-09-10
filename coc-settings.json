@@ -27,6 +27,7 @@
     }
   },
   "snippets.ultisnips.pythonPrompt": false,
+  "go.goplsPath": "/opt/homebrew/bin/gopls",
   "java.jdt.ls.java.home": "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home",
   "java.configuration.runtimes": [
     {
