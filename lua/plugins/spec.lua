@@ -5,7 +5,9 @@ return {
   -- File Navigation
   { 'nvim-tree/nvim-tree.lua', lazy = false },
   { 'nvim-tree/nvim-web-devicons', lazy = false },
-  { 'junegunn/fzf', lazy = false, build = './install --bin' },
+  -- `./install --bin` is a shell script (no Windows equivalent here) and is
+  -- redundant anyway if fzf is already installed system-wide (brew/scoop/apt).
+  { 'junegunn/fzf', lazy = false, build = vim.fn.has('win32') == 0 and './install --bin' or nil },
   { 'junegunn/fzf.vim', lazy = false },
   { 'coreyja/fzf.devicon.vim', lazy = false },
 
@@ -16,7 +18,9 @@ return {
   { 'sainnhe/gruvbox-material', lazy = false },
   { 'navarasu/onedark.nvim', lazy = false },
   { 'nvim-lualine/lualine.nvim', lazy = false },
-  { 'rrethy/vim-hexokinase', lazy = false, build = 'make hexokinase' },
+  -- `make hexokinase` needs `make` + a Go toolchain; on Windows install a
+  -- prebuilt binary per the plugin's README instead (see :h hexokinase-installation).
+  { 'rrethy/vim-hexokinase', lazy = false, build = vim.fn.has('win32') == 0 and 'make hexokinase' or nil },
   { 'akinsho/bufferline.nvim', lazy = false },
 
   -- Editing Enhancements

@@ -7,9 +7,10 @@ nnoremap /. :let @/=expand('<cword>')<CR>n
 " Function to reload configuration
 if !exists('*ReloadConfig')
   function! ReloadConfig()
-    source ~/.config/nvim/init.lua
-    source ~/.config/nvim/editor.vim
-    source ~/.config/nvim/plugins.vim
+    let l:config_dir = stdpath('config')
+    execute 'source ' . l:config_dir . '/init.lua'
+    execute 'source ' . l:config_dir . '/editor.vim'
+    execute 'source ' . l:config_dir . '/plugins.vim'
   endfunction
 endif
 
@@ -99,30 +100,9 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 
-" Ejecutar Python con Ctrl + Enter (auto-close)
-autocmd FileType python nnoremap <buffer> <C-CR> :w<CR>:split \| terminal python3 %<CR>:setlocal bufhidden=wipe \| autocmd BufLeave <buffer> ++once bdelete!<CR>i
-" Ejecutar Python con Ctrl + Alt + Enter (persistente)
-autocmd FileType python nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal python3 %<CR>i
-
-" Ejecutar JS/TS con Ctrl + Enter (auto-close)
-autocmd FileType javascript,typescript nnoremap <buffer> <C-CR> :w<CR>:split \| terminal node %<CR>:setlocal bufhidden=wipe \| autocmd BufLeave <buffer> ++once bdelete!<CR>i
-" Ejecutar JS/TS con Ctrl + Alt + Enter (persistente)
-autocmd FileType javascript,typescript nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal node %<CR>i
-
-" Ejecutar Java con Ctrl + Enter (auto-close)
-autocmd FileType java nnoremap <buffer> <C-CR> :w<CR>:split \| terminal java %<CR>:setlocal bufhidden=wipe \| autocmd BufLeave <buffer> ++once bdelete!<CR>i
-" Ejecutar Java con Ctrl + Alt + Enter (persistente)
-autocmd FileType java nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal java %<CR>i
-
-" Ejecutar Go con Ctrl + Enter (auto-close)
-autocmd FileType go nnoremap <buffer> <C-CR> :w<CR>:split \| terminal go run %<CR>:setlocal bufhidden=wipe \| autocmd BufLeave <buffer> ++once bdelete!<CR>i
-" Ejecutar Go con Ctrl + Alt + Enter (persistente)
-autocmd FileType go nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal go run %<CR>i
-
-" Ejecutar Kotlin con Ctrl + Enter (auto-close): compila a un jar temporal y lo corre
-autocmd FileType kotlin nnoremap <buffer> <C-CR> :w<CR>:split \| terminal kotlinc % -include-runtime -d /tmp/nvim_kotlin_run.jar && java -jar /tmp/nvim_kotlin_run.jar<CR>:setlocal bufhidden=wipe \| autocmd BufLeave <buffer> ++once bdelete!<CR>i
-" Ejecutar Kotlin con Ctrl + Alt + Enter (persistente)
-autocmd FileType kotlin nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal kotlinc % -include-runtime -d /tmp/nvim_kotlin_run.jar && java -jar /tmp/nvim_kotlin_run.jar<CR>i
+" Ejecutar el archivo actual con Ctrl+Enter / Ctrl+Alt+Enter: ver
+" lua/config/run_file.lua (portable entre Python3/Python y sin rutas /tmp
+" fijas, para que funcione igual en Windows/Linux/macOS).
 
 " Borrar palabra hacia atras
 imap <A-BS> <C-w>

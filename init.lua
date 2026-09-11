@@ -35,18 +35,29 @@ vim.g.VM_maps = {
   ['Skip Region'] = '<C-x>',
 }
 
+-- Same load-order concern as VM_maps above: coc.nvim reads g:coc_user_config
+-- when it loads below, so the OS-dependent LSP paths this computes (gopls,
+-- kotlin-language-server, JDK home — see the module itself) must be set
+-- before require('lazy').setup(), not after.
+pcall(require, 'config.coc_portable')
+
 if not _G.__lazy_setup_done then
   require('lazy').setup(require('plugins.spec'))
   _G.__lazy_setup_done = true
 end
 
-vim.g.python3_host_prog = '/usr/bin/python3'
+-- Let Neovim find python3 on $PATH itself (works the same on macOS, Linux
+-- and Windows) instead of hardcoding a Unix path here.
+if vim.fn.executable('python3') == 1 then
+  vim.g.python3_host_prog = vim.fn.exepath('python3')
+end
 
 -- Editor settings (Vimscript — keymaps, options)
-vim.cmd('source ~/.config/nvim/editor.vim')
+local config_dir = vim.fn.stdpath('config')
+vim.cmd('source ' .. config_dir .. '/editor.vim')
 
 -- Plugins settings (Vimscript — non-lua plugins)
-vim.cmd('source ~/.config/nvim/plugins.vim')
+vim.cmd('source ' .. config_dir .. '/plugins.vim')
 
 -- Lua plugins (nvim-tree, lualine, onedark, bufferline, auto-save)
 pcall(require, 'plugins.nvim-tree')
@@ -61,3 +72,4 @@ pcall(require, 'plugins.flash')
 pcall(require, 'plugins.codesnap')
 pcall(require, 'plugins.rainbow-delimiters')
 pcall(require, 'config.healthcheck')
+pcall(require, 'config.run_file')
