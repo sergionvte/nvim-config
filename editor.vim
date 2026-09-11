@@ -119,6 +119,11 @@ autocmd FileType go nnoremap <buffer> <C-CR> :w<CR>:split \| terminal go run %<C
 " Ejecutar Go con Ctrl + Alt + Enter (persistente)
 autocmd FileType go nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal go run %<CR>i
 
+" Ejecutar Kotlin con Ctrl + Enter (auto-close): compila a un jar temporal y lo corre
+autocmd FileType kotlin nnoremap <buffer> <C-CR> :w<CR>:split \| terminal kotlinc % -include-runtime -d /tmp/nvim_kotlin_run.jar && java -jar /tmp/nvim_kotlin_run.jar<CR>:setlocal bufhidden=wipe \| autocmd BufLeave <buffer> ++once bdelete!<CR>i
+" Ejecutar Kotlin con Ctrl + Alt + Enter (persistente)
+autocmd FileType kotlin nnoremap <buffer> <C-A-CR> :w<CR>:split \| terminal kotlinc % -include-runtime -d /tmp/nvim_kotlin_run.jar && java -jar /tmp/nvim_kotlin_run.jar<CR>i
+
 " Borrar palabra hacia atras
 imap <A-BS> <C-w>
 imap <Esc><BS> <C-w>
@@ -126,25 +131,7 @@ imap <Esc><BS> <C-w>
 " CoC
 nmap <leader>h :CocCommand document.toggleInlayHint<CR>
 
-" Multicursor - seleccionar siguiente ocurrencia (cmd+d)
-nmap <C-S-D> <Plug>(coc-cursors-word)
-xmap <C-S-D> <Plug>(coc-cursors-range)
-
-" Multicursor - agregar cursor arriba/abajo
-nmap <C-A-Down> <Plug>(coc-cursors-position)j
-nmap <C-A-Up> <Plug>(coc-cursors-position)k
-xmap <C-A-Down> <Plug>(coc-cursors-range)j
-xmap <C-A-Up> <Plug>(coc-cursors-range)k
-
-" Deshabilitar todos los keymaps por defecto
-let g:VM_default_mappings = 0
-
-" Multicursor - seleccionar siguiente ocurrencia (cmd+d)
-let g:VM_maps = {}
-let g:VM_maps['Find Under'] = '<C-A-d>'
-let g:VM_maps['Find Subword Under'] = '<C-A-d>'
-
-" Multicursor - agregar cursor arriba/abajo
-let g:VM_maps['Add Cursor Down'] = '<C-A-Down>'
-let g:VM_maps['Add Cursor Up'] = '<C-A-Up>'
-let g:VM_maps['Skip Region'] = '<C-x>'
+" Multicursor (vim-visual-multi): la configuración de sus teclas vive en
+" init.lua, ANTES de que lazy.nvim cargue los plugins — VM lee g:VM_maps una
+" sola vez al arrancar, así que definirla aquí (que se sourcea después) nunca
+" surtía efecto.

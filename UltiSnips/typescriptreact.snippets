@@ -1,0 +1,81 @@
+## Next.js (App Router) snippets — complementa a los genéricos de vim-snippets
+
+snippet nclient "'use client' + componente funcional" b
+'use client';
+
+import { useState } from 'react';
+
+export default function ${1:`!p snip.rv = snip.basename or "Component"`}() {
+	const [${2:state}, set${3:State}] = useState(${4:initialState});
+
+	return (
+		<div>
+			$0
+		</div>
+	);
+}
+endsnippet
+
+snippet npage "Next.js App Router: page.tsx" b
+export default async function Page({
+	params,
+	searchParams,
+}: {
+	params: { ${1:slug}: string };
+	searchParams: { [key: string]: string | string[] | undefined };
+}) {
+	$0
+	return <div></div>;
+}
+endsnippet
+
+snippet nlayout "Next.js App Router: layout.tsx" b
+export default function Layout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
+	return (
+		<div>
+			$0
+			{children}
+		</div>
+	);
+}
+endsnippet
+
+snippet nmeta "Next.js generateMetadata" b
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: { ${1:slug}: string } }): Promise<Metadata> {
+	return {
+		title: '$0',
+	};
+}
+endsnippet
+
+snippet nloading "Next.js App Router: loading.tsx" b
+export default function Loading() {
+	return <div>$0Loading...</div>;
+}
+endsnippet
+
+snippet nerror "Next.js App Router: error.tsx" b
+'use client';
+
+export default function Error({
+	error,
+	reset,
+}: {
+	error: Error & { digest?: string };
+	reset: () => void;
+}) {
+	return (
+		<div>
+			<h2>Something went wrong!</h2>
+			$0
+			<button onClick={() => reset()}>Try again</button>
+		</div>
+	);
+}
+endsnippet

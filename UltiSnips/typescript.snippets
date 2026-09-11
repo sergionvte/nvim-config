@@ -1,0 +1,23 @@
+## Next.js (App Router) snippets — complementa a los genéricos de vim-snippets
+
+snippet nroute "Next.js App Router: route.ts (API handler)" b
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(request: NextRequest) {
+	$0
+	return NextResponse.json({});
+}
+endsnippet
+
+snippet nmiddleware "Next.js middleware.ts" b
+import { NextRequest, NextResponse } from 'next/server';
+
+export function middleware(request: NextRequest) {
+	$0
+	return NextResponse.next();
+}
+
+export const config = {
+	matcher: '${1:/((?!api|_next/static|_next/image|favicon.ico).*)}',
+};
+endsnippet

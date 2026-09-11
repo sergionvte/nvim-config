@@ -36,7 +36,8 @@ let g:coc_global_extensions = [
 \ 'coc-emmet',
 \ 'coc-svg',
 \ 'coc-java',
-\ 'coc-go'
+\ 'coc-go',
+\ 'coc-kotlin'
 \ ]
 
 " Signify
