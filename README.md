@@ -89,6 +89,16 @@ Los de apertura agregan espacio interno (`( texto )`), los de cierre no
 
 **Comentarios**: `Ctrl+C` (normal o visual) — toggle de comentario.
 
+**Git** (gitsigns.nvim — marca líneas agregadas/modificadas/borradas en el
+margen contra HEAD):
+- `]c` / `[c` — saltar al siguiente/anterior cambio
+- `\gs` / `\gr` — stage / reset del hunk bajo el cursor
+- `\gp` — preview del hunk
+- `\gb` — mostrar/ocultar blame en línea
+
+**Atajos disponibles** (`which-key.nvim`): dejá una tecla a medio camino
+(leader, `g`, `]`, `[`, etc.) y aparece un popup con lo que sigue.
+
 **Ejecutar el archivo actual**: `Ctrl+Enter` (corre y cierra el split al
 salir) / `Ctrl+Alt+Enter` (deja el split abierto). Ver
 [lua/config/run_file.lua](lua/config/run_file.lua).
