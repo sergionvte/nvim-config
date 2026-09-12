@@ -1,3 +1,6 @@
+-- Barra de estado inferior (modo, rama git, diagnósticos, archivo, tipo,
+-- posición). noshowmode en editor.vim evita el "-- INSERT --" duplicado
+-- de Vim ya que lualine ya muestra el modo.
 require('lualine').setup({
   options = {
     theme = 'onedark',

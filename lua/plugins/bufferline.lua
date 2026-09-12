@@ -1,3 +1,6 @@
+-- Pestañas de buffers arriba de la ventana (Tab/Shift+Tab en editor.vim
+-- ciclan entre ellas). offsets reserva el ancho del árbol de nvim-tree
+-- cuando está abierto, para que las pestañas no se monten encima.
 require('bufferline').setup({
   options = {
     mode = 'buffers',

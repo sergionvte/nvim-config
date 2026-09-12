@@ -1,4 +1,10 @@
-" Vim-hexokinase
+" Configuración de los plugins en VimScript (los declarados en spec.lua sin
+" `config` en Lua). Los mapeos/globals que un plugin LEE AL CARGAR (no
+" cuando vos los usás) no pueden vivir acá si ese plugin es lazy=false y
+" carga antes que este archivo — ver la nota grande en init.lua sobre
+" g:VM_maps / g:NERDCreateDefaultMappings para el porqué.
+
+" Vim-hexokinase: resalta colores (#fff, rgb(...), etc.) directo en el texto.
 let g:Hexokinase_highlighters = [ 'virtual' ]
 
 " Vim-surround: en modo visual, escribir " o ' sobre la selección la envuelve

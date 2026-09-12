@@ -1,3 +1,8 @@
+-- Tema de color principal de toda la config (lualine, bufferline y
+-- rainbow-delimiters reutilizan su paleta via require('onedark.palette')).
+-- transparent=true deja que el fondo de la terminal se vea a través de
+-- Neovim; por eso SignColumn y los highlights de NvimTree se fuerzan a
+-- bg=NONE más abajo, si no fuerzan su propio fondo sólido.
 require('onedark').setup({
   style = 'darker',
   toggle_style_key = '<leader>ts',

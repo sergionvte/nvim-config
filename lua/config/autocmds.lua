@@ -1,3 +1,9 @@
+-- Autocmds sueltos que no encajan en el archivo de configuración de ningún
+-- plugin específico.
+
+-- Detectar Django templates: un .html dentro de un proyecto Django (tiene
+-- manage.py en algún directorio padre) se trata como htmldjango en vez de
+-- html puro, para el resaltado y el LSP de coc-htmldjango.
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.html",
   callback = function()

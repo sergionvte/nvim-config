@@ -1,3 +1,5 @@
+-- Guías verticales de indentación, más una guía resaltada (scope) que marca
+-- el bloque de código donde está el cursor.
 require('ibl').setup({
   indent = { char = '│' },
   scope = {
