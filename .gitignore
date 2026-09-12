@@ -1,0 +1,5 @@
+# graphify (knowledge-graph tool for AI assistants) and opencode's plugin
+# config for it — local tooling metadata, not part of the actual nvim
+# config. Keep it on disk (don't delete), just out of version control.
+graphify-out/
+.opencode/
