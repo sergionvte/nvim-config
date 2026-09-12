@@ -35,6 +35,15 @@ vim.g.VM_maps = {
   ['Skip Region'] = '<C-x>',
 }
 
+-- Same load-order concern as VM_maps above: nerdcommenter checks
+-- g:NERDCreateDefaultMappings once, eagerly, when it loads below, and
+-- creates its default mappings (e.g. <leader>cs for "Sexy Comment") right
+-- there if it's not already 0 by then — setting it in plugins.vim (sourced
+-- later) was too late to stop that, it just happened to go unnoticed because
+-- CodeSnap's own <leader>cs mapping used to be set even later and clobbered
+-- it. Lazy-loading CodeSnap surfaced the conflict.
+vim.g.NERDCreateDefaultMappings = 0
+
 -- Same load-order concern as VM_maps above: coc.nvim reads g:coc_user_config
 -- when it loads below, so the OS-dependent LSP paths this computes (gopls,
 -- kotlin-language-server, JDK home — see the module itself) must be set
@@ -59,8 +68,9 @@ vim.cmd('source ' .. config_dir .. '/editor.vim')
 -- Plugins settings (Vimscript — non-lua plugins)
 vim.cmd('source ' .. config_dir .. '/plugins.vim')
 
--- Lua plugins (nvim-tree, lualine, onedark, bufferline, auto-save)
-pcall(require, 'plugins.nvim-tree')
+-- Lua plugins (lualine, onedark, bufferline, auto-save). nvim-tree and
+-- codesnap are NOT required here — lazy.nvim loads them (and calls their
+-- config modules itself) only on first use, via `keys`/`cmd` in spec.lua.
 pcall(require, 'plugins.lualine')
 pcall(require, 'plugins.onedark')
 pcall(require, 'plugins.autosave')
@@ -69,7 +79,6 @@ pcall(require, 'plugins.treesitter')
 pcall(require, 'plugins.indent-blankline')
 pcall(require, 'config.autocmds')
 pcall(require, 'plugins.flash')
-pcall(require, 'plugins.codesnap')
 pcall(require, 'plugins.rainbow-delimiters')
 pcall(require, 'config.healthcheck')
 pcall(require, 'config.run_file')

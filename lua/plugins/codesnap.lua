@@ -27,13 +27,6 @@ require('codesnap').setup({
   },
 })
 
-local save_dir = vim.fn.expand('~/Pictures/CodeSnap')
-
--- Visual mode: `<leader>cs` copies the selection as an image to the clipboard,
--- `<leader>cS` saves it as a timestamped .png in ~/Pictures/CodeSnap.
-vim.keymap.set('x', '<leader>cs', ':CodeSnap<CR>', { silent = true, desc = 'CodeSnap to clipboard' })
-vim.keymap.set('x', '<leader>cS', function()
-  vim.fn.mkdir(save_dir, 'p')
-  local path = save_dir .. '/CodeSnap_' .. os.date('%Y-%m-%d_%H-%M-%S') .. '.png'
-  vim.cmd("'<,'>CodeSnapSave " .. path)
-end, { silent = true, desc = 'CodeSnap to file' })
+-- Keymaps for this live in lua/plugins/spec.lua (lazy.nvim's `keys`), so the
+-- plugin — and its ~50ms native generator library — only loads the first
+-- time you actually press <leader>cs / <leader>cS, not on every startup.

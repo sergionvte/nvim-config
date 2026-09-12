@@ -31,28 +31,58 @@ end
 -- Home` layout (naively deriving it from the `java` binary's own path does
 -- not, on macOS). Elsewhere, `<JAVA_HOME>/bin/java(.exe)` is flat enough
 -- that going up two directories from the resolved binary works fine.
+--
+-- /usr/libexec/java_home spawns a real subprocess (~20ms) and this file
+-- must run before lazy.setup(), i.e. on every single startup — so the
+-- result is cached to disk and only re-detected if the cached path stops
+-- existing (e.g. after a JDK upgrade moves it).
+local cache_file = vim.fn.stdpath('cache') .. '/coc_portable_java_home.txt'
+
+local function cached_java_home()
+  if vim.fn.filereadable(cache_file) == 1 then
+    local cached = vim.fn.readfile(cache_file, '', 1)[1]
+    if cached and cached ~= '' and vim.fn.isdirectory(cached) == 1 then
+      return cached
+    end
+  end
+  return nil
+end
+
 local function detect_java_home()
   local java_home = vim.fn.getenv('JAVA_HOME')
   if java_home ~= vim.NIL and java_home ~= '' then
     return java_home
   end
 
-  if vim.fn.has('mac') == 1 and vim.fn.executable('/usr/libexec/java_home') == 1 then
-    local result = vim.fn.system('/usr/libexec/java_home'):gsub('%s+$', '')
-    if vim.v.shell_error == 0 and result ~= '' then
-      return result
-    end
+  local cached = cached_java_home()
+  if cached then
+    return cached
   end
 
-  local java_bin = exepath('java')
-  if java_bin then
-    local home = vim.fn.fnamemodify(java_bin, ':h:h')
-    if vim.fn.isdirectory(home) == 1 then
-      return home
+  local function detected()
+    if vim.fn.has('mac') == 1 and vim.fn.executable('/usr/libexec/java_home') == 1 then
+      local result = vim.fn.system('/usr/libexec/java_home'):gsub('%s+$', '')
+      if vim.v.shell_error == 0 and result ~= '' then
+        return result
+      end
     end
+
+    local java_bin = exepath('java')
+    if java_bin then
+      local home = vim.fn.fnamemodify(java_bin, ':h:h')
+      if vim.fn.isdirectory(home) == 1 then
+        return home
+      end
+    end
+
+    return nil
   end
 
-  return nil
+  local home = detected()
+  if home then
+    vim.fn.writefile({ home }, cache_file)
+  end
+  return home
 end
 
 local java_home = detect_java_home()

@@ -54,10 +54,8 @@ nnoremap <C-j> :silent! Ag<CR>
 nnoremap <C-k> :silent! Files<CR>
 inoremap <A-delete> <NOP>
 
-" NERD Commenter
-" Deshabilitar mappings por defecto para evitar conflictos
-let g:NERDCreateDefaultMappings = 0
-
+" NERD Commenter (g:NERDCreateDefaultMappings se define en init.lua, antes de
+" que cargue el plugin — ver el comentario ahí para el motivo)
 " Ctrl+C para toggle comment en normal y visual
 nmap <C-c> <Plug>NERDCommenterToggle
 vmap <C-c> <Plug>NERDCommenterTogglegv

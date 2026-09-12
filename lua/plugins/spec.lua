@@ -3,7 +3,25 @@
 -- (everything loaded eagerly at startup, same relative order as vim-plug).
 return {
   -- File Navigation
-  { 'nvim-tree/nvim-tree.lua', lazy = false },
+  -- Only opened via keys, never at startup, so load it on first press
+  -- instead of on every single startup (saves ~30ms every time it's unused).
+  {
+    'nvim-tree/nvim-tree.lua',
+    keys = {
+      { '<C-n>', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle file tree' },
+      { '<C-b>', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle file tree' },
+      { '<leader>n', '<cmd>NvimTreeFocus<CR>', desc = 'Focus file tree' },
+    },
+    cmd = { 'NvimTreeToggle', 'NvimTreeFocus', 'NvimTreeOpen' },
+    init = function()
+      -- Must run before nvim-tree loads, so it can't live in the lazy-loaded config module.
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+    end,
+    config = function()
+      require('plugins.nvim-tree')
+    end,
+  },
   { 'nvim-tree/nvim-web-devicons', lazy = false },
   -- `./install --bin` is a shell script (no Windows equivalent here) and is
   -- redundant anyway if fzf is already installed system-wide (brew/scoop/apt).
@@ -47,6 +65,28 @@ return {
   -- Comments
   { 'preservim/nerdcommenter', lazy = false },
 
-  -- Code screenshots (polacode-style)
-  { 'mistricky/codesnap.nvim', tag = 'v2.0.5', lazy = false },
+  -- Code screenshots (polacode-style). Loads its ~50ms native generator
+  -- library only on first use, not on every startup.
+  {
+    'mistricky/codesnap.nvim',
+    tag = 'v2.0.5',
+    keys = {
+      { '<leader>cs', ':CodeSnap<CR>', mode = 'x', desc = 'CodeSnap to clipboard' },
+      {
+        '<leader>cS',
+        function()
+          local save_dir = vim.fn.expand('~/Pictures/CodeSnap')
+          vim.fn.mkdir(save_dir, 'p')
+          local path = save_dir .. '/CodeSnap_' .. os.date('%Y-%m-%d_%H-%M-%S') .. '.png'
+          vim.cmd("'<,'>CodeSnapSave " .. path)
+        end,
+        mode = 'x',
+        desc = 'CodeSnap to file',
+      },
+    },
+    cmd = { 'CodeSnap', 'CodeSnapSave' },
+    config = function()
+      require('plugins.codesnap')
+    end,
+  },
 }
