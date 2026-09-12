@@ -36,10 +36,11 @@ return {
   { 'coreyja/fzf.devicon.vim', lazy = false },
 
   -- UI Enhancements
-  { 'sainnhe/edge', lazy = false },
-  { 'sainnhe/sonokai', lazy = false },
-  { 'sainnhe/everforest', lazy = false },
-  { 'sainnhe/gruvbox-material', lazy = false },
+  -- (sainnhe/edge, sonokai, everforest, gruvbox-material used to be here:
+  -- colorscheme-only plugins with no plugin/ script cost nothing at startup
+  -- either way since :colorscheme is what actually loads them, but none of
+  -- them are in use — onedark is the only colorscheme ever set — so they
+  -- were just dead weight in the plugin list/lockfile. Removed.)
   { 'navarasu/onedark.nvim', lazy = false },
   { 'nvim-lualine/lualine.nvim', lazy = false },
   -- `make hexokinase` needs `make` + a Go toolchain; on Windows install a
@@ -48,23 +49,69 @@ return {
   { 'akinsho/bufferline.nvim', lazy = false },
 
   -- Editing Enhancements
-  { 'mhinz/vim-signify', lazy = false },
-  { 'lukas-reineke/indent-blankline.nvim', lazy = false },
-  { 'andymass/vim-matchup', lazy = false },
-  { 'jiangmiao/auto-pairs', lazy = false },
-  { 'alvan/vim-closetag', lazy = false },
+  -- These only matter once a real buffer is open (nothing to highlight/
+  -- indent/match/gutter-mark before that), so `event` defers loading each
+  -- one until BufReadPre/BufNewFile instead of every startup. Using the
+  -- *Pre* event (not BufReadPost) matters: lazy.nvim loads the plugin and
+  -- lets its own autocmds pick up from there normally, but only if the
+  -- plugin hasn't already missed the event it cares about — vim-signify's
+  -- own setup listens on the plain BufRead event, which fires *before*
+  -- BufReadPost, so triggering on BufReadPost loaded it one event too late
+  -- and it silently never attached to the first file opened in a session
+  -- (confirmed empirically: git gutter signs never appeared for buffer 1).
+  -- BufReadPre fires earliest, so every plugin here — whichever of
+  -- BufRead/BufReadPost/FileType it listens on — still catches its own
+  -- event normally afterwards. Verified treesitter highlighting, illuminate,
+  -- indent guides, rainbow delimiters and the git gutter all now attach
+  -- correctly to the very first file opened in a fresh session.
+  { 'mhinz/vim-signify', event = { 'BufReadPre', 'BufNewFile' } },
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      require('plugins.indent-blankline')
+    end,
+  },
+  { 'andymass/vim-matchup', event = { 'BufReadPre', 'BufNewFile' } },
+  -- auto-pairs/closetag/tagalong all set up their (buffer-local) mappings
+  -- from a FileType/BufEnter-ish autocmd of their own, which — like
+  -- signify above — has already passed by the time you first enter insert
+  -- mode in that same buffer if loaded on InsertEnter instead: confirmed
+  -- typing `(` right after opening a file did nothing (no closing paren)
+  -- until this was changed to the earlier BufReadPre/BufNewFile group.
+  { 'jiangmiao/auto-pairs', event = { 'BufReadPre', 'BufNewFile' } },
+  { 'alvan/vim-closetag', event = { 'BufReadPre', 'BufNewFile' } },
   { 'tpope/vim-surround', lazy = false },
-  { 'AndrewRadev/tagalong.vim', lazy = false },
+  { 'AndrewRadev/tagalong.vim', event = { 'BufReadPre', 'BufNewFile' } },
   { 'neoclide/coc.nvim', lazy = false, branch = 'master', build = 'yarn install --frozen-lockfile' },
   { 'tpope/vim-fugitive', lazy = false },
   { 'mg979/vim-visual-multi', lazy = false, branch = 'master' },
 
   -- Syntax Highlighting & Code Navigation
-  { 'RRethy/vim-illuminate', lazy = false },
-  { 'HiPhish/rainbow-delimiters.nvim', lazy = false },
-  { 'nvim-treesitter/nvim-treesitter', lazy = false, branch = 'main', build = ':TSUpdate' },
-  { 'styled-components/vim-styled-components', lazy = false, branch = 'main' },
-  { 'honza/vim-snippets', lazy = false },
+  { 'RRethy/vim-illuminate', event = { 'BufReadPre', 'BufNewFile' } },
+  {
+    'HiPhish/rainbow-delimiters.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      require('plugins.rainbow-delimiters')
+    end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    event = { 'BufReadPre', 'BufNewFile' },
+    branch = 'main',
+    build = ':TSUpdate',
+    config = function()
+      require('plugins.treesitter')
+    end,
+  },
+  -- CSS-in-JS syntax, only relevant to these filetypes.
+  {
+    'styled-components/vim-styled-components',
+    branch = 'main',
+    ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css' },
+  },
+  { 'honza/vim-snippets', event = 'InsertEnter' },
   { 'folke/flash.nvim', lazy = false },
 
   -- Comments

@@ -68,17 +68,15 @@ vim.cmd('source ' .. config_dir .. '/editor.vim')
 -- Plugins settings (Vimscript — non-lua plugins)
 vim.cmd('source ' .. config_dir .. '/plugins.vim')
 
--- Lua plugins (lualine, onedark, bufferline, auto-save). nvim-tree and
--- codesnap are NOT required here — lazy.nvim loads them (and calls their
--- config modules itself) only on first use, via `keys`/`cmd` in spec.lua.
+-- Lua plugins that stay eager (lualine, onedark, bufferline, auto-save).
+-- nvim-tree, codesnap, treesitter, indent-blankline and rainbow-delimiters
+-- are NOT required here — lazy.nvim loads them (and calls their config
+-- modules itself) only on first use, via `keys`/`cmd`/`event` in spec.lua.
 pcall(require, 'plugins.lualine')
 pcall(require, 'plugins.onedark')
 pcall(require, 'plugins.autosave')
 pcall(require, 'plugins.bufferline')
-pcall(require, 'plugins.treesitter')
-pcall(require, 'plugins.indent-blankline')
 pcall(require, 'config.autocmds')
 pcall(require, 'plugins.flash')
-pcall(require, 'plugins.rainbow-delimiters')
 pcall(require, 'config.healthcheck')
 pcall(require, 'config.run_file')
