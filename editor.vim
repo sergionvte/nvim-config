@@ -1,3 +1,12 @@
+" Configuración "core" del editor: opciones generales, atajos de movimiento
+" y edición que no son específicos de ningún plugin. La config de cada
+" plugin vive en su propio archivo:
+"   - plugins.vim         -> plugins en VimScript
+"   - lua/plugins/*.lua    -> plugins en Lua
+"   - lua/config/*.lua     -> utilidades propias (sin plugin externo)
+" Todo se carga desde init.lua. Ver el README.md en la raíz del repo para
+" una explicación completa de la config y sus atajos.
+
 " Define leader key
 let mapleader = "\\"
 
@@ -103,6 +112,13 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Ejecutar el archivo actual con Ctrl+Enter / Ctrl+Alt+Enter: ver
 " lua/config/run_file.lua (portable entre Python3/Python y sin rutas /tmp
 " fijas, para que funcione igual en Windows/Linux/macOS).
+
+" Mover línea (normal) o bloque seleccionado (visual) hacia arriba/abajo con
+" alt+shift+j/k. == / gv=gv reindenta después de mover.
+nnoremap <silent> <M-J> :m .+1<CR>==
+nnoremap <silent> <M-K> :m .-2<CR>==
+xnoremap <silent> <M-J> :m '>+1<CR>gv=gv
+xnoremap <silent> <M-K> :m '<-2<CR>gv=gv
 
 " Borrar palabra hacia atras
 imap <A-BS> <C-w>

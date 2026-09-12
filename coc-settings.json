@@ -14,14 +14,6 @@
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
-  "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
-      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
-      "initializationOptions": {}
-    }
-  },
   "snippets.ultisnips.pythonPrompt": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true

@@ -1,14 +1,10 @@
--- auto-save.nvim enables itself by default (before this file's config even
--- runs) due to a load-order quirk in the plugin, and its before/after-saving
--- callbacks aren't reliable either. So instead of fighting that, this
--- disables the plugin and implements silent autosave directly: after a
--- period of inactivity, `:noautocmd write` saves the file without firing
--- BufWritePre — meaning no formatting, no trailing-whitespace trim. Those
--- only happen on an explicit, manual `:w`, which runs normally with
--- autocmds enabled.
-pcall(function()
-  require('auto-save').off()
-end)
+-- Custom silent autosave (auto-save.nvim used to be a dependency here, but
+-- it enabled itself by default before this file's config even ran — a
+-- load-order quirk in the plugin — and its before/after-saving callbacks
+-- weren't reliable either, so it was dropped entirely). After a period of
+-- inactivity, `:noautocmd write` saves the file without firing BufWritePre
+-- — meaning no formatting, no trailing-whitespace trim. Those only happen
+-- on an explicit, manual `:w`, which runs normally with autocmds enabled.
 
 local inactivity_ms = 2000
 local timer = nil

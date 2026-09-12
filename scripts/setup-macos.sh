@@ -45,7 +45,6 @@ brew install \
   go \
   kotlin \
   kotlin-language-server \
-  ccls \
   openjdk@21
 
 # gopls no es un paquete de Homebrew separado del todo — lo instala coc-go

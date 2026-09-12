@@ -1,7 +1,5 @@
--- Deshabilitar netrw (requerido por nvim-tree)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
+-- vim.g.loaded_netrw ya se define en lua/plugins/spec.lua (su `init`, que
+-- corre antes de que el plugin cargue) — no repetirlo acá.
 require('nvim-tree').setup({
   hijack_cursor = true,
   sync_root_with_cwd = true,
@@ -59,10 +57,8 @@ require('nvim-tree').setup({
   },
 })
 
--- Keymaps
-vim.keymap.set('n', '<leader>n', ':NvimTreeFocus<CR>', { silent = true })
-vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { silent = true })
-vim.keymap.set('n', '<C-b>', ':NvimTreeToggle<CR>', { silent = true })
+-- <C-n>/<C-b>/<leader>n ya están mapeados en lua/plugins/spec.lua (su
+-- `keys`, que es justamente lo que dispara la carga de este archivo).
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "NvimTree",

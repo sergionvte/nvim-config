@@ -14,8 +14,6 @@ local checks = {
   java = { name = 'Java', bins = { 'java' } },
   go = { name = 'Go', bins = { 'go', 'gopls' } },
   kotlin = { name = 'Kotlin', bins = { 'kotlinc', 'kotlin-language-server' } },
-  c = { name = 'C/C++', bins = { 'ccls' } },
-  cpp = { name = 'C/C++', bins = { 'ccls' } },
 }
 
 local function missing_bins(lang)

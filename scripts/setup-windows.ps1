@@ -73,9 +73,8 @@ if (Get-Command scoop -ErrorAction SilentlyContinue) {
     Install-Scoop 'win32yank'
     Install-Scoop 'kotlin-language-server'
     Install-Scoop 'FiraCode-NF'
-    # ccls (C/C++) no tiene un binario mantenido para Windows tan simple como
-    # en macOS/Linux — si lo necesitás, puede que tengas que compilarlo vos
-    # mismo o usar clangd en su lugar. :CheckTools te va a avisar si falta.
+    # C/C++ usa coc-clangd, que descarga su propio clangd la primera vez que
+    # abrís un archivo — no hace falta instalar nada aparte para eso.
 } else {
     Warn "Sin Scoop no puedo instalar win32yank/kotlin-language-server/la fuente automáticamente. Instalá Scoop (scoop.sh) y volvé a correr este script."
 }

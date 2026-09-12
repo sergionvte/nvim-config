@@ -1,6 +1,12 @@
--- lazy.nvim plugin spec — 1:1 port of the old vim-plug list.
--- Every plugin keeps `lazy = false` so loading behaves exactly like before
--- (everything loaded eagerly at startup, same relative order as vim-plug).
+-- lazy.nvim plugin spec — originally a 1:1 port of the old vim-plug list
+-- with everything `lazy = false` (eager, same order as vim-plug). Most
+-- plugins are still eager for simplicity, but a couple of the heavier ones
+-- (nvim-tree, codesnap.nvim) are now lazy-loaded on the keys/commands that
+-- actually trigger them — see the comment on each for why. When a plugin's
+-- own config lives in a separate lua/plugins/<name>.lua module, it's wired
+-- up via that plugin's `config` function here (required only once lazy.nvim
+-- actually loads the plugin) rather than in init.lua's eager pcall-require
+-- list, which is reserved for plugins that stay `lazy = false`.
 return {
   -- File Navigation
   -- Only opened via keys, never at startup, so load it on first press
@@ -49,7 +55,6 @@ return {
   { 'alvan/vim-closetag', lazy = false },
   { 'tpope/vim-surround', lazy = false },
   { 'AndrewRadev/tagalong.vim', lazy = false },
-  { 'Pocco81/auto-save.nvim', lazy = false },
   { 'neoclide/coc.nvim', lazy = false, branch = 'master', build = 'yarn install --frozen-lockfile' },
   { 'tpope/vim-fugitive', lazy = false },
   { 'mg979/vim-visual-multi', lazy = false, branch = 'master' },
