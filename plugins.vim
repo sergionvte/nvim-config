@@ -46,12 +46,9 @@ let g:coc_global_extensions = [
 \ 'coc-kotlin'
 \ ]
 
-" Signify
-let g:signify_skip_filetype = { 'NvimTree': 1 }
-highlight SignColumn        guibg=NONE
-highlight SignifySignAdd    guifg=#00ff00 guibg=NONE
-highlight SignifySignChange guifg=#ffff00 guibg=NONE
-highlight SignifySignDelete guifg=#ff0000 guibg=NONE
+" Sign column transparent (gitsigns' own highlights are set in
+" lua/plugins/gitsigns.lua)
+highlight SignColumn guibg=NONE
 
 " Fzf
 " nnoremap <C-m> :Buffer<CR>

@@ -64,7 +64,15 @@ return {
   -- event normally afterwards. Verified treesitter highlighting, illuminate,
   -- indent guides, rainbow delimiters and the git gutter all now attach
   -- correctly to the very first file opened in a fresh session.
-  { 'mhinz/vim-signify', event = { 'BufReadPre', 'BufNewFile' } },
+  -- gitsigns.nvim replaced vim-signify here: same sign-column git markers,
+  -- plus hunk stage/reset/preview/blame (see lua/plugins/gitsigns.lua).
+  {
+    'lewis6991/gitsigns.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      require('plugins.gitsigns')
+    end,
+  },
   {
     'lukas-reineke/indent-blankline.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -113,6 +121,16 @@ return {
   },
   { 'honza/vim-snippets', event = 'InsertEnter' },
   { 'folke/flash.nvim', lazy = false },
+  -- Shows a popup of available keybindings when you pause mid-combo
+  -- (leader, g, ], [...). VeryLazy = load shortly after startup finishes,
+  -- not blocking the first frame, but ready well before you'd pause on a key.
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require('plugins.which-key')
+    end,
+  },
 
   -- Comments
   { 'preservim/nerdcommenter', lazy = false },

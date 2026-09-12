@@ -69,6 +69,5 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.foldcolumn = "0"
     vim.opt_local.statuscolumn = ""
     vim.opt_local.scrolloff = 0
-    vim.cmd('SignifyDisableAll')
   end,
 })
