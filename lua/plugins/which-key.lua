@@ -7,3 +7,11 @@
 require('which-key').setup({
   preset = 'modern',
 })
+
+-- The gitsigns keymaps (lua/plugins/gitsigns.lua) already have a `desc`, so
+-- which-key picks them up on its own — this just labels the <leader>g
+-- prefix as a named group, so pressing \ shows "g -> +Git" instead of the
+-- individual gs/gr/gp/gb entries mixed in flat with everything else.
+require('which-key').add({
+  { '<leader>g', group = 'Git (gitsigns)' },
+})
