@@ -17,7 +17,7 @@ require('ibl').setup({
     },
   },
   exclude = {
-    filetypes = { 'NvimTree', 'help', 'dashboard' },
+    filetypes = { 'neo-tree', 'help', 'dashboard' },
     buftypes = { 'nofile', 'terminal', 'quickfix' },
   },
 })

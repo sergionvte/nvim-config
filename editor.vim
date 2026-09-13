@@ -52,7 +52,11 @@ set updatetime=100
 set undofile
 
 autocmd FileType python setlocal tabstop=4 shiftwidth=4
-autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+" neo-tree is excluded: its own FileType autocmd (lua/plugins/neo-tree.lua)
+" turns number/relativenumber off for that buffer, and this BufEnter/
+" FocusGained toggle would otherwise flip relativenumber back on every time
+" the tree window gets focus.
+autocmd BufEnter,FocusGained,InsertLeave * if &filetype !=# 'neo-tree' | set relativenumber | endif
 autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 function! s:StripTrailingWhitespace()
   let l:view = winsaveview()

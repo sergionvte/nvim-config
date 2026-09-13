@@ -17,7 +17,7 @@ local function try_silent_save()
   if vim.bo[buf].buftype ~= '' then
     return
   end
-  if vim.bo[buf].filetype == 'NvimTree' then
+  if vim.bo[buf].filetype == 'neo-tree' then
     return
   end
   if not vim.bo[buf].modifiable or not vim.bo[buf].modified then

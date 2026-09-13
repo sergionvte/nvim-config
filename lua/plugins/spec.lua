@@ -11,21 +11,30 @@ return {
   -- File Navigation
   -- Only opened via keys, never at startup, so load it on first press
   -- instead of on every single startup (saves ~30ms every time it's unused).
+  -- Replaces nvim-tree: same sidebar-on-the-right idea, but with git status
+  -- (add/modify/etc.) rendered inline per-file and multiple sources
+  -- (filesystem/buffers/git status) in the same tree.
   {
-    'nvim-tree/nvim-tree.lua',
-    keys = {
-      { '<C-n>', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle file tree' },
-      { '<C-b>', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle file tree' },
-      { '<leader>n', '<cmd>NvimTreeFocus<CR>', desc = 'Focus file tree' },
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
     },
-    cmd = { 'NvimTreeToggle', 'NvimTreeFocus', 'NvimTreeOpen' },
+    keys = {
+      { '<C-n>', '<cmd>Neotree toggle<CR>', desc = 'Toggle file tree' },
+      { '<C-b>', '<cmd>Neotree toggle<CR>', desc = 'Toggle file tree' },
+      { '<leader>n', '<cmd>Neotree focus<CR>', desc = 'Focus file tree' },
+    },
+    cmd = 'Neotree',
     init = function()
-      -- Must run before nvim-tree loads, so it can't live in the lazy-loaded config module.
+      -- Must run before neo-tree loads, so it can't live in the lazy-loaded config module.
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
     end,
     config = function()
-      require('plugins.nvim-tree')
+      require('plugins.neo-tree')
     end,
   },
   { 'nvim-tree/nvim-web-devicons', lazy = false },
