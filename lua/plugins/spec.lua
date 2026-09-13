@@ -54,8 +54,26 @@ return {
   { 'nvim-lualine/lualine.nvim', lazy = false },
   -- `make hexokinase` needs `make` + a Go toolchain; on Windows install a
   -- prebuilt binary per the plugin's README instead (see :h hexokinase-installation).
-  { 'rrethy/vim-hexokinase', lazy = false, build = vim.fn.has('win32') == 0 and 'make hexokinase' or nil },
-  { 'akinsho/bufferline.nvim', lazy = false },
+  -- Colors only matter once there's a buffer with something to highlight,
+  -- so it follows the same BufReadPre/BufNewFile reasoning as the Editing
+  -- Enhancements group below.
+  {
+    'rrethy/vim-hexokinase',
+    event = { 'BufReadPre', 'BufNewFile' },
+    build = vim.fn.has('win32') == 0 and 'make hexokinase' or nil,
+  },
+  -- always_show_bufferline=false (see lua/plugins/bufferline.lua) already
+  -- means it renders nothing until a 2nd buffer is open, so deferring its
+  -- load to the same BufReadPre/BufNewFile event as the group below costs
+  -- nothing visible while skipping the load entirely on a startup that
+  -- never opens a second buffer.
+  {
+    'akinsho/bufferline.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      require('plugins.bufferline')
+    end,
+  },
 
   -- Editing Enhancements
   -- These only matter once a real buffer is open (nothing to highlight/
@@ -100,9 +118,39 @@ return {
   { 'alvan/vim-closetag', event = { 'BufReadPre', 'BufNewFile' } },
   { 'tpope/vim-surround', lazy = false },
   { 'AndrewRadev/tagalong.vim', event = { 'BufReadPre', 'BufNewFile' } },
-  { 'neoclide/coc.nvim', lazy = false, branch = 'master', build = 'yarn install --frozen-lockfile' },
-  { 'tpope/vim-fugitive', lazy = false },
-  { 'mg979/vim-visual-multi', lazy = false, branch = 'master' },
+  -- coc.nvim is the single heaviest eager plugin here (LSP client +
+  -- completion + diagnostics) — like gitsigns/treesitter/etc. above, it
+  -- only does anything once a real buffer exists, so the same
+  -- BufReadPre/BufNewFile trigger applies. g:coc_user_config (see
+  -- lua/config/coc_portable.lua) is set in init.lua before
+  -- require('lazy').setup() regardless of when coc itself ends up loading,
+  -- so this doesn't reopen that load-order gotcha.
+  {
+    'neoclide/coc.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    branch = 'master',
+    build = 'yarn install --frozen-lockfile',
+  },
+  -- Not referenced by any keymap (see README) — every fugitive feature is
+  -- reached through its own :G/:Git-family commands, so cmd-based lazy
+  -- loading covers all of it.
+  {
+    'tpope/vim-fugitive',
+    cmd = { 'G', 'Git', 'Gdiffsplit', 'Gvdiffsplit', 'Gread', 'Gwrite', 'Gedit' },
+  },
+  -- g:VM_maps (init.lua) is read once when vim-visual-multi's own plugin/
+  -- script loads — same as coc's g:coc_user_config above, that's set well
+  -- before require('lazy').setup() regardless of *when* this actually
+  -- loads, so triggering on the exact keys that start a multicursor
+  -- session (Alt+j/k/d) is safe. <C-x> (Skip Region) isn't included: that
+  -- one only does anything *during* an already-active multicursor session
+  -- — outside of one it's the regular "close buffer" mapping (see README),
+  -- so it must never be what loads this plugin.
+  {
+    'mg979/vim-visual-multi',
+    branch = 'master',
+    keys = { '<M-j>', '<M-k>', '<M-d>' },
+  },
 
   -- Syntax Highlighting & Code Navigation
   { 'RRethy/vim-illuminate', event = { 'BufReadPre', 'BufNewFile' } },
@@ -129,7 +177,25 @@ return {
     ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css' },
   },
   { 'honza/vim-snippets', event = 'InsertEnter' },
-  { 'folke/flash.nvim', lazy = false },
+  -- Jump-to-anywhere-on-screen motion, only relevant once you press its own
+  -- trigger key — same idea as codesnap below, `keys` both defers loading
+  -- and *is* the real mapping (no separate vim.keymap.set needed elsewhere).
+  {
+    'folke/flash.nvim',
+    keys = {
+      {
+        '<C-f>',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').jump()
+        end,
+        desc = 'Flash Jump (Search)',
+      },
+    },
+    config = function()
+      require('plugins.flash')
+    end,
+  },
   -- Shows a popup of available keybindings when you pause mid-combo
   -- (leader, g, ], [...). VeryLazy = load shortly after startup finishes,
   -- not blocking the first frame, but ready well before you'd pause on a key.

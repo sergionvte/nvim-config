@@ -1,3 +1,36 @@
+-- Byte-compiles and caches every require()'d Lua module (this file's own
+-- requires included, plus lazy.nvim's and every plugin's) to
+-- stdpath('cache'), so subsequent startups skip re-parsing them from source.
+-- Must be the very first thing that runs, before any other require, to
+-- cover as much of the startup chain as possible.
+vim.loader.enable()
+
+-- These are legacy built-in plugins nothing here uses (no :Gzip, :Vimball,
+-- :TOhtml, etc. in this config) — each one otherwise gets sourced and
+-- registers its own commands/autocmds on every single startup for no
+-- benefit. netrw is disabled separately, inside neo-tree's own `init` (see
+-- lua/plugins/neo-tree.lua) — it has to run specifically before neo-tree
+-- loads, so it can't be lumped in here.
+for _, plugin in ipairs({
+  'gzip',
+  'zip',
+  'zipPlugin',
+  'tar',
+  'tarPlugin',
+  'getscript',
+  'getscriptPlugin',
+  'vimball',
+  'vimballPlugin',
+  '2html_plugin',
+  'logipat',
+  'rrhelper',
+  'spellfile_plugin',
+  'tutor_mode_plugin',
+  'tohtml',
+}) do
+  vim.g['loaded_' .. plugin] = 1
+end
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -68,15 +101,15 @@ vim.cmd('source ' .. config_dir .. '/editor.vim')
 -- Plugins settings (Vimscript — non-lua plugins)
 vim.cmd('source ' .. config_dir .. '/plugins.vim')
 
--- Lua plugins that stay eager (lualine, onedark, bufferline, auto-save).
--- nvim-tree, codesnap, treesitter, indent-blankline and rainbow-delimiters
--- are NOT required here — lazy.nvim loads them (and calls their config
--- modules itself) only on first use, via `keys`/`cmd`/`event` in spec.lua.
+-- Lua plugins that stay eager (lualine, onedark, auto-save): things you'd
+-- otherwise see visibly pop in after startup (statusline, colorscheme) or
+-- that need to be armed before the first buffer loads. bufferline and flash
+-- moved to lazy `event`/`keys` triggers in spec.lua (their config now lives
+-- in each plugin's own `config` function there, not here) — neither one
+-- needs to exist before you've opened a second buffer or pressed Ctrl+F.
 pcall(require, 'plugins.lualine')
 pcall(require, 'plugins.onedark')
 pcall(require, 'plugins.autosave')
-pcall(require, 'plugins.bufferline')
 pcall(require, 'config.autocmds')
-pcall(require, 'plugins.flash')
 pcall(require, 'config.healthcheck')
 pcall(require, 'config.run_file')
