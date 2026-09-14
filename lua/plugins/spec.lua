@@ -125,9 +125,21 @@ return {
   -- lua/config/coc_portable.lua) is set in init.lua before
   -- require('lazy').setup() regardless of when coc itself ends up loading,
   -- so this doesn't reopen that load-order gotcha.
+  -- `cmd` covers coc's own commands (:CocInstall, :CocConfig, etc.) for the
+  -- case where you run one of these *before* ever opening a file in the
+  -- session (a plain `nvim` with no args) — without it, BufReadPre/
+  -- BufNewFile never fires and the commands don't exist yet to run.
   {
     'neoclide/coc.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
+    cmd = {
+      'CocInstall', 'CocUninstall', 'CocUpdate', 'CocUpdateSync',
+      'CocConfig', 'CocLocalConfig', 'CocRestart', 'CocStart',
+      'CocInfo', 'CocOpenLog', 'CocPrintErrors', 'CocDisable', 'CocEnable',
+      'CocList', 'CocListResume', 'CocListCancel',
+      'CocPrev', 'CocNext', 'CocFirst', 'CocLast',
+      'CocCommand', 'CocSearch', 'CocWatch', 'CocOutline', 'CocDiagnostics',
+    },
     branch = 'master',
     build = 'yarn install --frozen-lockfile',
   },
