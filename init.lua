@@ -66,6 +66,16 @@ vim.g.VM_maps = {
   ['Add Cursor Down'] = '<M-j>',
   ['Add Cursor Up'] = '<M-k>',
   ['Skip Region'] = '<C-x>',
+  -- Switches between "cursor mode" (motions move the cursors; c/d/y need a
+  -- motion, e.g. cw) and "extend mode" (motions grow a free-form visual-like
+  -- selection at every cursor, and c/d/y act on it directly) — this is how
+  -- you select the same arbitrary chunk of text at all cursors at once and
+  -- delete/replace it. VM_default_mappings=0 above disables every VM
+  -- mapping not listed here, and this one got missed, silently leaving no
+  -- way to reach extend mode. VM's own <buffer> mapping for it only exists
+  -- while a multicursor session is active, so it doesn't fight with Tab's
+  -- normal buffer-cycling mapping (editor.vim) outside of one.
+  ['Switch Mode'] = '<Tab>',
 }
 
 -- Same load-order concern as VM_maps above: nerdcommenter checks
