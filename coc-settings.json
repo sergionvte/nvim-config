@@ -17,5 +17,20 @@
   "snippets.ultisnips.pythonPrompt": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "java.import.exclusions": [
+    "**/node_modules/**",
+    "**/.metadata/**",
+    "**/archetype-resources/**",
+    "**/META-INF/maven/**",
+    "**/.git/**",
+    "**/.venv/**",
+    "**/venv/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/.ipynb_checkpoints/**",
+    "**/target/**",
+    "**/dist/**",
+    "**/build/**"
+  ]
 }
