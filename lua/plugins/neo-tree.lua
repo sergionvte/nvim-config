@@ -1,5 +1,20 @@
 -- vim.g.loaded_netrw ya se define en lua/plugins/spec.lua (su `init`, que
 -- corre antes de que el plugin cargue) — no repetirlo acá.
+
+-- vim.ui.input() (usado por use_popups_for_input=false más abajo) deja el
+-- cursor al FINAL del texto precargado por defecto — molesto para el caso
+-- común de anteponer algo (../, otra carpeta) en vez de editar la
+-- extensión. Metiendo un <Home> en el typeahead justo antes de abrir el
+-- prompt, el cursor arranca al principio sin tocar nada más del prompt.
+-- No afecta a otros usos de vim.ui.input sin `default` (p. ej. gitsigns).
+local default_ui_input = vim.ui.input
+vim.ui.input = function(opts, on_confirm)
+  if opts and opts.default and opts.default ~= '' then
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Home>', true, false, true), 'n', false)
+  end
+  default_ui_input(opts, on_confirm)
+end
+
 require('neo-tree').setup({
   close_if_last_window = true,
   popup_border_style = 'rounded',
@@ -38,7 +53,13 @@ require('neo-tree').setup({
   filesystem = {
     hijack_netrw_behavior = 'open_default',
     filtered_items = {
-      hide_dotfiles = false,
+      -- hide_dotfiles stays at its default (true) and visible=true shows
+      -- them anyway from the start — `H` toggles `visible`, which only has
+      -- anything to show/hide when a category is actually marked as
+      -- filtered. Setting hide_dotfiles=false instead (nvim-tree style)
+      -- would make `H` a permanent no-op for dotfiles, since there'd be
+      -- nothing left for it to toggle.
+      visible = true,
       hide_gitignored = false,
     },
     follow_current_file = {
